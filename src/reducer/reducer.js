@@ -7,12 +7,23 @@ const initstate = {
     excel:[
       
     ],
-    test:"1"
+    realObj:[
+
+    ],
+    croods:{
+
+    }
 };
 
 export default function (state=initstate, {type, payload} ){
   
   switch(type) {
+    case typeForAction.CALL_API_GET_DATA:
+      return {
+        ...state,
+        realObj: payload
+      }
+
     case typeForAction.HANDLE_EXCELFILE_INPUT:
         console.log("AAAAAAAAAAAAAAAAAAAAAAAAAA")
         console.log(payload)
@@ -56,6 +67,14 @@ export default function (state=initstate, {type, payload} ){
         ...state,
           excel:data
       };
+
+    case typeForAction.SET_CROODS:
+      console.log("We are inside the SET_CROODS reducer")
+      console.log(payload);
+      return{
+        ...state,
+        croods: payload
+      }
 
       default:
         return state
