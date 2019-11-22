@@ -6,12 +6,17 @@ import * as action from "../action/action";
 function ListData({ excel,realObj }) {
   return (
     <Row>
+      {console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")}
+      {console.log(realObj)}
+      {console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")}
+
+
       {realObj != null ? (
         realObj.map((item, index) => (
           <Col>
             <div className="m-3">
               <ListGroup style={{ width: "18rem" }} as="ul">
-                <ListGroup.Item as="li"> Company: {item.路線所屬巴士公司}{" "}</ListGroup.Item>
+                <ListGroup.Item as="li"> Company: {item.巴士路線所屬公司}{" "}</ListGroup.Item>
 
                 <ListGroup.Item as="li"> Route: {item.路線} </ListGroup.Item>
 
@@ -25,10 +30,14 @@ function ListData({ excel,realObj }) {
 
                 <ListGroup.Item as="li"> Total Time: {item.總行程時間} </ListGroup.Item>
 
-                {item.完成 == "未完成" ? (
-                  <ListGroup.Item as="li" variant="danger">   Status: {item.完成} </ListGroup.Item>
+                <ListGroup.Item as="li"> Instagram Link: {item.Instagram記錄連結} </ListGroup.Item>
+
+                
+
+                {item.完成挑戰 == "未完成" ? (
+                  <ListGroup.Item as="li" variant="danger">   Status: {item.完成挑戰} </ListGroup.Item>
                 ) : (
-                  <ListGroup.Item as="li" active> Status: {item.完成} </ListGroup.Item>
+                  <ListGroup.Item as="li" active> Status: {item.完成挑戰} </ListGroup.Item>
                 )}
               </ListGroup>
             </div>

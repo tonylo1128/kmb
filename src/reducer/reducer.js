@@ -10,9 +10,19 @@ const initstate = {
     realObj:[
 
     ],
-    croods:{
+    croods:[
 
-    }
+
+    ],
+    handleBusRouteInputValue:"",
+    temp:[
+      
+    ],
+    tempForRoute:[
+
+    ],
+    tempForTime:[],
+    selectedItem:[]
 };
 
 export default function (state=initstate, {type, payload} ){
@@ -71,11 +81,75 @@ export default function (state=initstate, {type, payload} ){
     case typeForAction.SET_CROODS:
       console.log("We are inside the SET_CROODS reducer")
       console.log(payload);
+      console.log(payload.coords.latitude)
+      console.log(payload.coords.longitude)
+
       return{
         ...state,
         croods: payload
       }
+    
+    case typeForAction.HANDLE_BUST_ROUTE_INPUT:
+      return{
+        ...state,
+        handleBusRouteInputValue: payload
+      }
 
+    case typeForAction.CALLBACK_FOR_API_GET_BOUND:
+      console.log("Here is the payload:")
+      console.log(payload)
+      return{
+        ...state,
+        temp:payload
+      }
+      case typeForAction.CALLBACK_FOR_API_ROUTE_DATA:
+        console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBB")
+        console.log(payload)
+        console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBB")
+        return{
+          ...state,
+          tempForRoute:payload.response,
+          selectedItem: payload
+
+        }
+      
+      case typeForAction.CALLBACK_FOR_GET_TIME:
+        console.log("HEREHEREHEREHEREHEREHERE is the paylaod")
+
+        console.log(payload.inputC)
+
+
+        console.log("THISTHISTHISTHISTHISTHIST is the state")
+        console.log(state.tempForTime)
+        
+
+        let indexZeroTime = "";
+        payload.apiData.map((item, index)=>{
+          if(index===0){
+            console.log(item.t)
+            indexZeroTime =  item.t;
+          }
+        })
+
+        let temp = payload.inputC;
+
+        temp.map((item, index)=>{
+          if (index == payload.selectedItem){
+            console.log("FIND A MATCH")
+            temp[index] = indexZeroTime
+          }
+        })
+
+        console.log("FKFKFKFKFKFKFKFKFKFKFKFK_________________")
+        console.log(temp)
+        console.log("FKFKFKFKFKFKFKFKFKFKFKFK_________________")
+
+        console.log(payload.inputC)
+
+        return {
+          ...state,
+          tempForTime: payload.inputC
+        }
       default:
         return state
   }

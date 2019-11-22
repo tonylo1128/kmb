@@ -1,17 +1,26 @@
-import React from "react";
-import { Form, Button,Navbar, Nav,  } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Form, Button,Navbar, Nav, Alert  } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as action from "../action/action";
 import * as XLSX from "xlsx";
+import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 function InsertExcel({
   excel,
   handleFileInput,
   storeValueToState,
   callApiForPostData,
-  getLocation
+  getLocation,
+  croods,
+  callApiGetData
 }) {
+
+  useEffect(() => {
+    callApiGetData();
+  }, []);
+
   return (
+    <Router>
     <div >
       <Navbar bg="dark" expand="lg">
         <Navbar.Brand className="text-light" href="#home">React-Bootstrap</Navbar.Brand>
@@ -19,9 +28,11 @@ function InsertExcel({
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Button onClick={()=>getLocation()} > Get Location</Button>
-            <Nav.Link className="text-light" href="#link">Link</Nav.Link>
-          </Nav>
 
+            <Link to="/gettime">Get Time</Link>
+            
+          </Nav>
+          <br/>
           <Form.Group>
             <input
                 className="text-light"
@@ -52,18 +63,21 @@ function InsertExcel({
         </Navbar.Collapse>
       </Navbar>
     </div>
+    </Router>
   );
 }
 
 const mapStateToProps = state => ({
-  excel: state.reducer.excel
+  excel: state.reducer.excel,
+  croods: state.reducer.croods
 });
 
 const mapsStateToAction = dispatch => ({
   handleFileInput: input => dispatch(action.handleFileInput(input)),
   storeValueToState: () => dispatch(action.storeValueToState()),
   callApiForPostData: input => dispatch(action.callApiForPostData(input)),
-  getLocation: ()=>dispatch(action.getLocation())
+  getLocation: ()=>dispatch(action.getLocation()),
+  callApiGetData: () => dispatch(action.callApiGetData())
 });
 
 export default connect(
