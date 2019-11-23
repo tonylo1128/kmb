@@ -18,11 +18,9 @@ const initstate = {
     temp:[
       
     ],
-    tempForRoute:[
-
-    ],
+    tempForRoute:"",
     tempForTime:[],
-    selectedItem:[]
+    selectedBoundWithDetails:[]
 };
 
 export default function (state=initstate, {type, payload} ){
@@ -109,46 +107,37 @@ export default function (state=initstate, {type, payload} ){
         return{
           ...state,
           tempForRoute:payload.response,
-          selectedItem: payload
+          selectedBoundWithDetails: payload
 
         }
       
       case typeForAction.CALLBACK_FOR_GET_TIME:
-        console.log("HEREHEREHEREHEREHEREHERE is the paylaod")
 
-        console.log(payload.inputC)
+        let indexZeroTime = [];
+        payload.map((item, index)=>{
+          item.response.map((item, index)=>{
+            if(index == 0){
+              indexZeroTime.push(item.t)
+            }
+            
+          })
 
+        })
 
-        console.log("THISTHISTHISTHISTHISTHIST is the state")
-        console.log(state.tempForTime)
         
-
-        let indexZeroTime = "";
-        payload.apiData.map((item, index)=>{
-          if(index===0){
-            console.log(item.t)
-            indexZeroTime =  item.t;
-          }
-        })
-
-        let temp = payload.inputC;
-
-        temp.map((item, index)=>{
-          if (index == payload.selectedItem){
-            console.log("FIND A MATCH")
-            temp[index] = indexZeroTime
-          }
-        })
-
-        console.log("FKFKFKFKFKFKFKFKFKFKFKFK_________________")
-        console.log(temp)
-        console.log("FKFKFKFKFKFKFKFKFKFKFKFK_________________")
-
-        console.log(payload.inputC)
+        console.log("This is what i am doing now")
+        console.log(indexZeroTime)
 
         return {
           ...state,
-          tempForTime: payload.inputC
+          tempForTime: indexZeroTime
+        }
+
+      case typeForAction.CLEAR_ROUTE_DATA:
+        console.log("Testing for CLEAR_ROUTE_DATA")
+        return{
+          ...state,
+          tempForRoute: payload
         }
       default:
         return state

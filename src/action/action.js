@@ -120,25 +120,34 @@ export function getLocation(){
   }
 
 
-
-
-  export function callApiGetTime(inputA, inputB, inputC){
+  export function callApiGetTime(inputA){
     console.log("-------AAAAAAAA----------BBBBBBBBB------------")
-    console.log(inputA, inputB, inputC)
+    console.log(inputA)
     console.log("-------AAAAAAAA----------BBBBBBBBB------------")
     return dispatch=>{
-      return axios.post("http://localhost:8001/getbustime", {inputA, inputB} )
+      return axios.post("http://localhost:8001/getbustime", {inputA} )
       .then(response=>{
-        const temp = JSON.parse(response.data.dataForBusData)
-        console.log(temp.response)
-        dispatch(callbackApiForGetTime(temp.response, inputB, inputC))
+        console.log("dataForBusData arrrrrrrrrrrrrrrrrrrrrrrrr")
+        console.log(response.data.dataForBusData)
+        const temp = response.data.dataForBusData
+        // temp.map((item, index)=>{
+        //   console.log(item.response)
+        // })
+        dispatch(callbackApiForGetTime(temp))
       })
     }
   }
 
-  export function callbackApiForGetTime (apiData, selectedItem, inputC){
+  export function callbackApiForGetTime (collectionOfResult){
     return {
       type: type.CALLBACK_FOR_GET_TIME,
-      payload: {apiData, selectedItem, inputC}
+      payload: collectionOfResult
+    }
+  }
+
+  export function clearBusRouteDetails(){
+    return{
+      type: type.CLEAR_ROUTE_DATA,
+      payload: null
     }
   }

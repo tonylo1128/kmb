@@ -1,29 +1,16 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Button,
-  Card,
-  Table
-} from "react-bootstrap";
+import { Container, Row, Col, Form, Button,Card } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as action from "../action/action";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import RouteDetails from "./RouteDetails"
 
-function GetTime({
-  handleBusRouteInput,
-  handleBusRouteInputValue,
-  getBusBound,
-  temp,
-  callApiForRouteData,
-  tempForRoute,
-  tempForTime,
-  callApiGetTime,
-  selectedItem
+function GetTime({handleBusRouteInput,handleBusRouteInputValue,getBusBound,temp,
+  callApiForRouteData,tempForRoute,tempForTime,callApiGetTime,selectedItem, clearBusRouteDetails
 }) {
+  
   let tempList = [];
+
   return (
     <Container>
       <Row>
@@ -36,14 +23,16 @@ function GetTime({
                 placeholder="Enter your Bus route here"
               />
             </Form.Group>
-            <Button
-              onClick={() => getBusBound(handleBusRouteInputValue)}
-              variant="primary"
-            >
+            <Button onClick={() => getBusBound(handleBusRouteInputValue)} variant="primary">
               Submit
+            </Button>
+
+            <Button onClick={()=> clearBusRouteDetails() }>
+              Clear
             </Button>
           </Form>
         </Col>
+
 
         <Col xs={6}>
           <Router>
@@ -75,63 +64,16 @@ function GetTime({
               )}
             </Row>
             <br />
-            <Row>
-              {console.log("ABCABCABCABCABCABCABCABCABCABCABCABC")}
-              {console.log(tempForRoute)}
-              {console.log("ABCABCABCABCABCABCABCABCABCABCABCABC")}
-              {console.log(tempForRoute)}
-              {tempForRoute == null ? (
-                <h1>Nothing in Routes yet</h1>
-              ) : (
-                tempForRoute.map((item, index) => {
-                  let tempObj = {};
-                  tempObj[index] = "N/A";
-                  tempList.push(tempObj);
-                  return (
-                    <Table striped bordered hover>
-                      <tbody>
-                        <tr>
-                          <td>{item.Seq}</td>
-                          <td>{item.CName}</td>
-                          <td>
-                            {console.log(
-                              "屌您屌您屌您屌您屌您屌您屌您屌您屌您屌您屌您"
-                            )}
-                            {console.log(tempForTime)}
-                            {console.log(
-                              "屌您屌您屌您屌您屌您屌您屌您屌您屌您屌您屌您"
-                            )}
 
-                            {tempForTime ?
-                              <h6>
-                                {tempForTime.map((item, indexForTime) => {
-                                  if (typeof item !== "object") {
-                                    console.log(typeof item)
-                                    // console.log(indexForTime, index, item )
-                                    return item;
-                                  }
-                                })}
-                              </h6>
-                            :
-                              <h6>Testing</h6>
-                            }
-                            
-                          </td>
-                          <td>
-                            <Button
-                              onClick={() =>
-                                callApiGetTime(selectedItem, item.Seq, tempList)
-                              }
-                            >
-                              Check
-                            </Button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  );
-                })
-              )}
+
+
+            <Row>
+              {console.log("This is the VERY BEGINNER of RouteDetails")}
+              {tempForRoute ? 
+              
+              <RouteDetails/>:
+              ""}
+                
             </Row>
           </Router>
         </Col>
@@ -153,7 +95,8 @@ const mapsStateToAction = dispatch => ({
   callApiForRouteData: (route, serviceType, bound) =>
     dispatch(action.callApiForRouteData(route, serviceType, bound)),
   callApiGetTime: (inputA, inputB, inputC) =>
-    dispatch(action.callApiGetTime(inputA, inputB, inputC))
+    dispatch(action.callApiGetTime(inputA, inputB, inputC)),
+    clearBusRouteDetails : ()=> dispatch(action.clearBusRouteDetails())
 });
 
 export default connect(mapStateToProps, mapsStateToAction)(GetTime);
