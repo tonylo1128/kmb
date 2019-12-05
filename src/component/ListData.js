@@ -16,13 +16,11 @@ function ListData({ excel,realObj }) {
           <Col>
             <div className="m-3">
               <ListGroup style={{ width: "18rem" }} as="ul">
-                <ListGroup.Item as="li"> Company: {item.巴士路線所屬公司}{" "}</ListGroup.Item>
+              <ListGroup.Item as="li"> <h3> Route: {item.路線} </h3></ListGroup.Item>
 
-                <ListGroup.Item as="li"> Route: {item.路線} </ListGroup.Item>
+              <ListGroup.Item as="li"> {item.起點}  {item.方向} {item.目的地}  </ListGroup.Item>
 
-                <ListGroup.Item as="li"> Starting Point: {item.起點} </ListGroup.Item>
-
-                <ListGroup.Item as="li"> Destination: {item.目的地} </ListGroup.Item>
+                <ListGroup.Item as="li"> Company: {item.路線所屬公司}{" "}</ListGroup.Item>
 
                 <ListGroup.Item as="li"> Start Time: {item.開始時間}</ListGroup.Item>
 
@@ -30,7 +28,7 @@ function ListData({ excel,realObj }) {
 
                 <ListGroup.Item as="li"> Total Time: {item.總行程時間} </ListGroup.Item>
 
-                <ListGroup.Item as="li"> Instagram Link: {item.Instagram記錄連結} </ListGroup.Item>
+                <ListGroup.Item as="li"><a href={item.Instagram記錄連結}>  Instagram Link</a> </ListGroup.Item>
 
                 
 
