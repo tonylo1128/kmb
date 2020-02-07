@@ -105,20 +105,4 @@ export default connect(mapStateToProps, mapsStateToAction)(RouteDetails);
 
 
 
-
-// {tempForTime ? (
-//   <h6>
-//     {tempForTime.map((item, indexForTime) => {
-//       if (typeof item !== "object") {
-//         console.log(typeof item);
-//         console.log("indexForTime " + indexForTime);
-//         // selectedItemInRouteDetails = indexForTime;
-//         console.log("After");
-//         console.log( item )
-//         return item;
-//       }
-//     })}
-//   </h6>
-// ) : (
-//   <h6>Testing</h6>
-// )}
+ 

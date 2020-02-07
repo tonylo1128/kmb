@@ -34,6 +34,7 @@ function GetTime({handleBusRouteInput,handleBusRouteInputValue,getBusBound,temp,
         </Col>
 
 
+
         <Col xs={6}>
           <Router>
             <Row>

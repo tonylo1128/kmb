@@ -128,7 +128,7 @@ export function getLocation(){
       return axios.post("http://localhost:8001/getbustime", {inputA} )
       .then(response=>{
         console.log("dataForBusData arrrrrrrrrrrrrrrrrrrrrrrrr")
-        console.log(response.data.dataForBusData)
+        console.log(response.data.dataForBusData) 
         const temp = response.data.dataForBusData
         // temp.map((item, index)=>{
         //   console.log(item.response)
@@ -149,5 +149,24 @@ export function getLocation(){
     return{
       type: type.CLEAR_ROUTE_DATA,
       payload: null
+    }
+  }
+
+  export function callApiTestingFuction(){
+    return (dispatch)=>{
+      return axios.get("http://search.kmb.hk/KMBWebSite/Function/FunctionRequest.ashx?action=getstops&route=31m&bound=1&serviceType=1")
+      .then(response=>{
+        console.log("Testing-------------------------------")
+        let test = response.data.data.route.lineGeometry
+        let obj = JSON.parse(test)
+        console.log(obj)
+      })
+    }
+  }
+
+  export function callBackForTestingFun(returnRes){
+    return{
+      type:type.TESTING_FOR_API_PATH,
+      payload: returnRes
     }
   }

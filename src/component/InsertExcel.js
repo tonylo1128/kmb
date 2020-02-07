@@ -3,7 +3,7 @@ import { Form, Button,Navbar, Nav, Alert  } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as action from "../action/action";
 import * as XLSX from "xlsx";
-import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function InsertExcel({
   excel,
@@ -12,7 +12,8 @@ function InsertExcel({
   callApiForPostData,
   getLocation,
   croods,
-  callApiGetData
+  callApiGetData,
+  callApiTestingFuction
 }) {
 
   useEffect(() => {
@@ -20,16 +21,24 @@ function InsertExcel({
   }, []);
 
   return (
-    <Router>
+   
     <div >
       <Navbar bg="dark" expand="lg">
-        <Navbar.Brand className="text-light" href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand className="text-light" >
+          <Link to="/">
+            React-Bootstrap
+          </Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Button onClick={()=>getLocation()} > Get Location</Button>
 
-            <Link to="/gettime">Get Time</Link>
+            <Link to="/gettime"><Button variant="primary"> Get Time </Button> </Link>
+
+            <Link to="googlemapapi"> <Button> GoogleMapAPI </Button> </Link>
+
+            
             
           </Nav>
           <br/>
@@ -63,7 +72,7 @@ function InsertExcel({
         </Navbar.Collapse>
       </Navbar>
     </div>
-    </Router>
+   
   );
 }
 
@@ -77,10 +86,15 @@ const mapsStateToAction = dispatch => ({
   storeValueToState: () => dispatch(action.storeValueToState()),
   callApiForPostData: input => dispatch(action.callApiForPostData(input)),
   getLocation: ()=>dispatch(action.getLocation()),
-  callApiGetData: () => dispatch(action.callApiGetData())
+  callApiGetData: () => dispatch(action.callApiGetData()),
+  callApiTestingFuction:()=> dispatch(action.callApiTestingFuction())
 });
 
 export default connect(
   mapStateToProps,
   mapsStateToAction
 )(InsertExcel);
+
+
+
+

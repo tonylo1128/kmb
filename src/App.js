@@ -7,8 +7,9 @@ import * as action from "./action/action";
 import * as XLSX from "xlsx";
 import InsertExcel from "./component/InsertExcel";
 import ListData from "./component/ListData";
-import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import GetTime from "./component/GetTime";
+import GoogleMapComponent from "./component/GoogleMapComponent"
 
 
 function App({
@@ -48,10 +49,15 @@ function App({
             <GetTime temp={temp} />
           </Route>
 
+          <Route exact path="/googlemapapi">
+            <GoogleMapComponent/>
+          </Route>
+
         </Switch>
         {/* <GetTime/> */}
         
       </Container>
+      
     </div>
   </Router>
   );
