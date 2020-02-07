@@ -23,7 +23,7 @@ export function handleFileInput(inputTemp){
   
   export function callApiForPostData(kmbData){
     return dispatch => { 
-      return axios.post("http://localhost:8001/postData", {kmbData})
+      return axios.post("http://localhost:8081/postData", {kmbData})
     
   }
 }
@@ -89,7 +89,7 @@ export function getLocation(){
 
   export function callApiGetData(){
     return dispatch =>{
-      return axios.get("http://localhost:8001/")
+      return axios.get("http://localhost:8081/")
       .then(response=>{
         console.log(response.data)
         dispatch(getDataApiFun(response.data.recieveRespFromkmbDataRepos))
@@ -125,7 +125,7 @@ export function getLocation(){
     console.log(inputA)
     console.log("-------AAAAAAAA----------BBBBBBBBB------------")
     return dispatch=>{
-      return axios.post("http://localhost:8001/getbustime", {inputA} )
+      return axios.post("http://localhost:8081/getbustime", {inputA} )
       .then(response=>{
         console.log("dataForBusData arrrrrrrrrrrrrrrrrrrrrrrrr")
         console.log(response.data.dataForBusData) 
