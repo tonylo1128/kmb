@@ -26,7 +26,7 @@ function InsertExcel({
       <Navbar bg="dark" expand="lg">
         <Navbar.Brand className="text-light" >
           <Link to="/">
-            React-Bootstrap
+            KMBPJ
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -63,7 +63,7 @@ function InsertExcel({
               variant="primary"
               type="submit"
             >
-              Nodejs
+              Send
             </Button>
 
             {console.log(excel)}
