@@ -49,9 +49,9 @@ function App({
             <GetTime temp={temp} />
           </Route>
 
-          <Route exact path="/googlemapapi">
+          {/* <Route exact path="/googlemapapi">
             <GoogleMapComponent/>
-          </Route>
+          </Route> */}
 
         </Switch>
         {/* <GetTime/> */}
