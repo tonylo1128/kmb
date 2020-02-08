@@ -2,6 +2,7 @@ import * as type from "./type"
 import * as XLSX from 'xlsx';
 import axios from "axios";
 
+require('dotenv');
 
 
 let data = []; 
@@ -23,7 +24,8 @@ export function handleFileInput(inputTemp){
   
   export function callApiForPostData(kmbData){
     return dispatch => { 
-      return axios.post("https://still-taiga-23168.herokuapp.com/postData", {kmbData})
+      // return axios.post("https://still-taiga-23168.herokuapp.com/postData", {kmbData})
+      return axios.post(`${process.env.REACT_APP_BASE_API_URL}/postData`, {kmbData})
     
   }
 }
@@ -70,6 +72,7 @@ export function getLocation(){
 
   export function getBusBound (input){
     console.log(input)
+    
     return dispatch=>{
       return axios.get("http://search.kmb.hk/KMBWebSite/Function/FunctionRequest.ashx?action=getroutebound&route="+input)
       .then(response=>{
@@ -89,7 +92,8 @@ export function getLocation(){
 
   export function callApiGetData(){
     return dispatch =>{
-      return axios.get("https://still-taiga-23168.herokuapp.com/")
+      // return axios.get("https://still-taiga-23168.herokuapp.com/")
+      return axios.get(`${process.env.REACT_APP_BASE_API_URL}`)
       .then(response=>{
         console.log(response.data)
         dispatch(getDataApiFun(response.data.recieveRespFromkmbDataRepos))
@@ -125,7 +129,8 @@ export function getLocation(){
     console.log(inputA)
     console.log("-------AAAAAAAA----------BBBBBBBBB------------")
     return dispatch=>{
-      return axios.post("https://still-taiga-23168.herokuapp.com/getbustime", {inputA} )
+      console.log(process.env.REACT_APP_BASE_API_URL)
+      return axios.post(`${process.env.REACT_APP_BASE_API_URL}/getbustime`, {inputA} )
       .then(response=>{
         console.log("dataForBusData arrrrrrrrrrrrrrrrrrrrrrrrr")
         console.log(response.data.dataForBusData) 
