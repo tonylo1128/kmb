@@ -32,25 +32,27 @@ function InsertExcel({
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Button onClick={()=>getLocation()} > Get Location</Button>
+            
 
-            <Link to="/gettime"><Button variant="primary"> Get Time </Button> </Link>
+            <Link to="/gettime"><Button className="m-2" variant="primary"> Get Time </Button> </Link>
 
             {/* <Link to="googlemapapi"> <Button> GoogleMapAPI </Button> </Link> */}
 
             
             
           </Nav>
-          <br/>
-          <Form.Group>
+          
+          
             <input
-                className="text-light"
+
+                className="text-light m-2"
                 type="file"
                 accept=".xlsx, .xls"
                 onChange={event => handleFileInput(event.target.files[0])}
             />
 
             <Button
+              className="m-2"
               onClick={() => storeValueToState()}
               variant="primary"
               type="submit"
@@ -59,6 +61,7 @@ function InsertExcel({
             </Button>
 
             <Button
+              className="m-2"
               onClick={() => callApiForPostData(excel)}
               variant="primary"
               type="submit"
@@ -67,7 +70,7 @@ function InsertExcel({
             </Button>
 
             {console.log(excel)}
-          </Form.Group>
+          
 
         </Navbar.Collapse>
       </Navbar>

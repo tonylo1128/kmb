@@ -15,22 +15,24 @@ function GetTime({handleBusRouteInput,handleBusRouteInputValue,getBusBound,temp,
     <Container>
       <Row>
         <Col xs={4}>
+
           <Form>
             <Form.Group>
-              <label className="l-3">Bus route Check</label>
+              <Form.Label>Check Bus arrive time</Form.Label>
               <Form.Control
                 onChange={e => handleBusRouteInput(e.target.value)}
                 placeholder="Enter your Bus route here"
               />
             </Form.Group>
-            <Button onClick={() => getBusBound(handleBusRouteInputValue)} variant="primary">
+            <Button className="m-2" onClick={() => getBusBound(handleBusRouteInputValue)} variant="primary">
               Submit
             </Button>
 
-            <Button onClick={()=> clearBusRouteDetails() }>
+            <Button className="m-2" onClick={()=> clearBusRouteDetails() }>
               Clear
             </Button>
           </Form>
+
         </Col>
 
 

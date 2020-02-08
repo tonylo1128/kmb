@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Container, Row, Col, Alert } from "react-bootstrap";
+import { Container, Row, Col, Alert, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as action from "./action/action";
 import * as XLSX from "xlsx";
@@ -19,7 +19,8 @@ function App({
   callApiForPostData,
   callApiGetData,
   croods,
-  temp
+  temp,
+  getLocation
 }) {
   useEffect(() => {
     callApiGetData();
@@ -36,7 +37,10 @@ function App({
           </Col>
         </Row>
         {croods==""
-        ?<Alert variant="danger"> Nothings in coords </Alert>
+        ?<Alert variant="danger"> 
+          Nothings in coords  
+          <Button className="float-right" onClick={()=>getLocation()} > Get Location</Button>
+        </Alert>
         :<Alert variant="primary">{croods.coords.latitude} , {croods.coords.longitude} </Alert>
         }
         <Switch>
@@ -70,7 +74,8 @@ const mapStateToProps = state => ({
 });
 
 const mapsStateToAction = dispatch => ({
-  callApiGetData: () => dispatch(action.callApiGetData())
+  callApiGetData: () => dispatch(action.callApiGetData()),
+  getLocation: ()=>dispatch(action.getLocation()),
 });
 
 export default connect(
