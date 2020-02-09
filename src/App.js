@@ -25,6 +25,12 @@ function App({
     callApiGetData();
   }, []);
 
+  let buttonStyle = {
+    position: "absolute", 
+    right: "5px", 
+    top: "5px"
+  }
+
   return (
     <Router>
 
@@ -39,7 +45,7 @@ function App({
         ?<div class=" alert alert-danger " > 
           <div class="mid-center">Nothings in coords  </div>
           <div >
-            <Button className="mid-right" onClick={()=>getLocation()} > Get Location</Button>
+            <Button style= {buttonStyle} className="mid-right" onClick={()=>getLocation()} > Get Location</Button>
           </div>
         </div>
 
