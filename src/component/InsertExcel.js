@@ -36,7 +36,7 @@ function InsertExcel({
 
             <Link to="/gettime"><Button className="m-2" variant="primary"> Get Time </Button> </Link>
 
-            {/* <Link to="googlemapapi"> <Button> GoogleMapAPI </Button> </Link> */}
+            <Link to="googlemapapi"> <Button className="m-2" variant="primary"> GoogleMapAPI </Button> </Link>
 
             
             

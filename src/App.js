@@ -10,7 +10,7 @@ import ListData from "./component/ListData";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import GetTime from "./component/GetTime";
 import GoogleMapComponent from "./component/GoogleMapComponent"
-
+import InputCom from "./component/InputCom"
 
 function App({
   excel,
@@ -37,10 +37,13 @@ function App({
           </Col>
         </Row>
         {croods==""
-        ?<Alert variant="danger"> 
-          Nothings in coords  
-          <Button className="float-right" onClick={()=>getLocation()} > Get Location</Button>
-        </Alert>
+        ?<div class=" alert alert-danger " > 
+          <div class="mid-center">Nothings in coords  </div>
+          <div >
+            <Button className="mid-right" onClick={()=>getLocation()} > Get Location</Button>
+          </div>
+        </div>
+
         :<Alert variant="primary">{croods.coords.latitude} , {croods.coords.longitude} </Alert>
         }
         <Switch>
@@ -53,9 +56,10 @@ function App({
             <GetTime temp={temp} />
           </Route>
 
-          {/* <Route exact path="/googlemapapi">
+          <Route exact path="/googlemapapi">
+            
             <GoogleMapComponent/>
-          </Route> */}
+          </Route>
 
         </Switch>
         {/* <GetTime/> */}
