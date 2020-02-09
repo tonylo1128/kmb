@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react"
-import { connect } from "react-redux";
-import * as action from "../action/action";
+import React, { useState } from "react"
 import { compose, withProps } from "recompose"
 import {
   withScriptjs,
@@ -12,7 +10,6 @@ import axios from 'axios'
 
 // import { hk1980ToGps } from '../../helpers/coordinate'
 import {convertCoord} from "./convertCoord"
-import InputCom from "./InputCom"
 
 const Map = compose(
   withProps({
@@ -46,17 +43,6 @@ const Map = compose(
     // console.log(inputHandle)
   }
 
-
-
-  function busRoute (){
-    console.log("busRoute function:")
-    console.log(inputHandle)
-  }
-
-  // useEffect(() => {
-  //   getPath()
-    
-  // }, [path])
 
   return (
     <div>
