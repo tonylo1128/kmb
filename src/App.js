@@ -10,7 +10,6 @@ import ListData from "./component/ListData";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import GetTime from "./component/GetTime";
 import GoogleMapComponent from "./component/GoogleMapComponent"
-import InputCom from "./component/InputCom"
 
 function App({
   excel,
