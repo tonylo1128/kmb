@@ -41,7 +41,9 @@ function App({
             <InsertExcel />
           </Col>
         </Row>
-        {croods==""
+
+
+        {/* {croods==""
         ?<div class=" alert alert-danger " > 
           <div class="mid-center">Nothings in coords  </div>
           <div >
@@ -50,7 +52,10 @@ function App({
         </div>
 
         :<Alert variant="primary">{croods.coords.latitude} , {croods.coords.longitude} </Alert>
-        }
+        } */}
+
+
+
         <Switch>
 
           <Route exact path="/">
