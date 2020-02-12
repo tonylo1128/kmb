@@ -6,7 +6,8 @@ import {
   Form,
   Button,
   Card,
-  Table
+  Table,
+  Spinner
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as action from "../action/action";
@@ -28,58 +29,51 @@ let countForOutput = 0;
 
 
   return (
-    <div>
-      
-      {tempForRoute == null ? 
-        <h1>Nothing in Routes yet</h1>
-       : 
-        tempForRoute.map((item, index) => {
-
-          console.log("ABCABCABCABCABCABCABCABCABCABCABCABC")
-          console.log(tempForTime)
-          console.log("ABCABCABCABCABCABCABCABCABCABCABCABC")
-
-
-          
-          return (
-            <Table striped bordered hover>
-              <tbody>
+    <React.Fragment>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Station order</th>
+            <th>Station name</th>
+            <th>Next bus arrival time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            tempForRoute ? tempForRoute.map((item, index) => (
+              <tr horizontal style={{marginBottom: '10px'}}>
+                <td>{parseInt(item.Seq) + 1}</td>
+                <td>{item.CName}</td>
+                <td>
+                  <h6>
+                    {
+                      tempForTime ? 
+                        tempForTime.map((item, indexForTime) => {
+                          // if (typeof item !== "object") {
+                            if(index === countForOutput){
+                              countForOutput++;
+                              return (tempForTime[index]);
+                            }
+                          // }
+                            return null;
+                        }) : (
+                          <Spinner animation="grow" variant="danger" sizing="sm" role="status">
+                            <span className="sr-only">Loading...</span>
+                          </Spinner>
+                        )
+                  }
+                  </h6>
+                </td>
+              </tr>
+              )) : (
                 <tr>
-                  <td>{item.Seq}</td>
-                  <td>{item.CName}</td>
-
-                  <td>
-                  {tempForTime ? (
-                    <h6>
-                      {tempForTime.map((item, indexForTime) => {
-                        // if (typeof item !== "object") {
-                          
-                          if(index === countForOutput){
-                            console.log("Current Big index: "+index+ "the value start at: "+countForOutput)
-                            countForOutput++;
-                            console.log("Find a match")
-                            console.log(item)
-                            return (tempForTime[index]);
-                          }
-                          
-                        // }
-                          return null;
-                      })}
-                    </h6>
-                  ) : (
-                    <h6>Testing</h6>
-                  )}
-                  
-                  
-                  </td>
-
+                  <td colspan={3}>No related info</td>
                 </tr>
-              </tbody>
-            </Table>)
-
-        })
-      }
-    </div>
+              )
+            }
+        </tbody>
+      </Table>
+    </React.Fragment>
   );
 }
 

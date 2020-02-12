@@ -35,14 +35,9 @@ function App({
     <Router>
 
     <div className="App">
-      <Container>
-        <Row>
-          <Col>
-            <InsertExcel />
-          </Col>
-        </Row>
-
-
+      <InsertExcel />
+      <Container style={{marginTop: '20px'}} >
+      
         {/* {croods==""
         ?<div class=" alert alert-danger " > 
           <div class="mid-center">Nothings in coords  </div>
