@@ -2,14 +2,16 @@ import React from "react";
 import { ListGroup, Row, Col, Card} from "react-bootstrap";
 import { connect } from "react-redux";
 import * as action from "../action/action";
+import HeadOfListData from "./HeadOfListData"
 
 import {convertCoord} from "./convertCoord"
 
 function ListData({ excel,realObj }) {
-  
+  var startTime;
+  var endTime;
+
   return (
     
-
     <Row>
       {console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")}
       {console.log(realObj)}
@@ -18,47 +20,55 @@ function ListData({ excel,realObj }) {
 
       {realObj != null ? (
         realObj.map((item, index) => (
+           
+          
           <Col>
-            <div className="m-3">
-              {/* <ListGroup style={{ width: "18rem" }} as="ul">
-              <ListGroup.Item as="li"> <h3> Route: {item.路線} </h3></ListGroup.Item>
-              <ListGroup.Item as="li"> {item.起點}  {item.方向} {item.目的地}  </ListGroup.Item>
-              <ListGroup.Item as="li"> Company: {item.路線所屬公司}{" "}</ListGroup.Item>
-              <ListGroup.Item as="li"> Start Time: {item.開始時間}</ListGroup.Item>
-              <ListGroup.Item as="li"> End Time: {item.結束時間} </ListGroup.Item>
-              <ListGroup.Item as="li"> Total Time: {item.總行程時間} </ListGroup.Item>
-              <ListGroup.Item as="li"><a href={item.Instagram記錄連結}>  Instagram Link</a> </ListGroup.Item>
-                
-
-                {item.完成挑戰 == "未完成" ? (
-                  <ListGroup.Item as="li" variant="danger">   Status: {item.完成挑戰} </ListGroup.Item>
-                ) : (
-                  <ListGroup.Item as="li" active> Status: {item.完成挑戰} </ListGroup.Item>
-                )}
-
-              </ListGroup> */}
+            <div className="centerStyle topDownMargin">
+            
+              {/* <div className=""> </div> */}
 
 
 
-              <Card style={{ width: '18rem' }}>
-              <Card.Header as="h4">Route: {item.路線}, ({item.路線所屬公司}) </Card.Header>
+              
+              <div className="cardContainer font"> 
+              
+              <HeadOfListData
+              route={item.路線}
+              busCom={item.路線所屬公司}
+              dst={item.目的地}/>
 
-              <ListGroup className="list-group-flush">
-                <ListGroup.Item as="li"> {item.起點}  {item.方向} {item.目的地}  </ListGroup.Item>
-                <ListGroup.Item as="li"> Start Time: {item.開始時間}</ListGroup.Item>
-                <ListGroup.Item as="li"> End Time: {item.結束時間} </ListGroup.Item>
-                <ListGroup.Item as="li"> Total Time: {item.總行程時間} </ListGroup.Item>
-                <ListGroup.Item as="li"><a href={item.Instagram記錄連結}>  Instagram Link</a> </ListGroup.Item>
+
+                  <div >
+                  
+                  
+                  {
+                    item.完成挑戰 ==="未完成" ?
+                    <h6 className="MarginTextCard" style={{color: "red"}} >{item.完成挑戰}</h6>
+                    :
+                    <h6 className="MarginTextCard" style={{color: "green"}} >{item.完成挑戰}</h6>
+                  }
+
+
+
+
+                  <hr/>
+                  <h6 className="MarginTextCard"> {item.起點}  {item.方向} {item.目的地} </h6>
+
                   
 
-                  {item.完成挑戰 == "未完成" ? (
-                    <ListGroup.Item as="li" variant="danger">   Status: {item.完成挑戰} </ListGroup.Item>
-                  ) : (
-                    <ListGroup.Item as="li" active> Status: {item.完成挑戰} </ListGroup.Item>
-                  )}
+                  {item.開始時間 !=null?
+                  <h6 className="MarginTextCard"> {(item.開始時間).substring(11, 21)} to {(item.結束時間).substring(11, 21)}</h6>
+                  :
+                  ""
+                  }
 
-                </ListGroup>
-              </Card>
+                </div>
+
+
+              </div>
+
+
+
 
 
             </div>
@@ -68,7 +78,7 @@ function ListData({ excel,realObj }) {
         <h1>Nothing is here ~ </h1>
       )}
     </Row>
-  );
+   );
 }
 
 const mapStateToProps = state => ({
@@ -86,3 +96,8 @@ export default connect(
   mapStateToProps,
   mapsStateToAction
 )(ListData);
+
+
+
+
+

@@ -36,25 +36,15 @@ function App({
 
     <div className="App">
       <InsertExcel />
-      <Container style={{marginTop: '20px'}} >
+
+      <Container className="main-container" >
       
-        {/* {croods==""
-        ?<div class=" alert alert-danger " > 
-          <div class="mid-center">Nothings in coords  </div>
-          <div >
-            <Button style= {buttonStyle} className="mid-right" onClick={()=>getLocation()} > Get Location</Button>
-          </div>
-        </div>
-
-        :<Alert variant="primary">{croods.coords.latitude} , {croods.coords.longitude} </Alert>
-        } */}
-
-
-
         <Switch>
-
+          
           <Route exact path="/">
+            <div className="cardstyle">
             <ListData />
+            </div>
           </Route>
 
           <Route exact path="/gettime">
@@ -62,10 +52,10 @@ function App({
           </Route>
 
           <Route exact path="/googlemapapi">
-            
             <GoogleMapComponent/>
           </Route>
 
+       
         </Switch>
         {/* <GetTime/> */}
         

@@ -1,22 +1,179 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  /* display: flex; */
 }
 
-.App-logo {
-  height: 40vmin;
+
+
+@media only screen and (max-width: 768px) {
+  .main-container {
+    display: flex;
+    justify-content: center;
+  }
+  
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+@media only screen and (min-width: 768px) {
+ 
+  
+}
+
+.cardContainer{
+  padding: 5px;
+  width: 18rem;
+  border-style: ridge;
+  border-radius: 1rem;
+  /* text-align: center; */
+  
+}
+
+ .centerStyle {
+  display: flex;
+  justify-content: center;
+}
+
+.topDownMargin{
+  margin: 10px 0 10px 0 ;
+}
+
+.MarginTextCard{
+  margin: 5px 5px 5px 5px ;
+}
+
+.headerOfCard{
+  display: flex;
+  flex-direction: row;
+  border-style: solid;
+  /* justify-content: space-between; */
+}
+
+.h5style{
+  margin: 0 0 0 1rem;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  
+}
+
+.font{
+  font-family: 'proxima-nova-soft'
+}
+
+.round{
+  background-color: red;
+  color: black;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-weight: 900;
 }
 
-.App-link {
-  color: #09d3ac;
+.rectangle{
+  width: 2rem;
+  height: 1rem;
+  background-color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.RTG2{
+  /* width: 10px;
+  height: 10px;
+  background-color: aliceblue; */
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.kmbBusLogo{
+  width: 1rem;
+  height:1rem;
+  content:url(https://t6.rbxcdn.com/41f3702acfff23d966b3f4d8a1121203);
+}
+
+.cityBusLogo{
+  width: 10px;
+  height:12px;
+  content:url(https://shoplineimg.com/5dedb6f5d9d3e3003839085e/5e3786d0fa6e5d001ef3f561/1000x.png?);
+  /* content:url(https://t6.rbxcdn.com/41f3702acfff23d966b3f4d8a1121203); */
+}
+
+
+
+.trapezoid{
+  /* border-bottom: 6px solid yellow;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  width: 1rem; */
+  width: 20px;
+  height: 10px;
+  clip-path: polygon(13% 63%, 87% 63%, 100% 81%, 100% 100%, 0 100%, 0 81%);
+  background-color: red;
+}
+
+.RTG{
+  width: 20px;
+  height: 10px;
+  background-color: #FBCB04;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: rgb(13, 13, 91);
+  border-style: solid;
+  border-width: 1px;
+  
+  
+}
+
+.fontSetting{
+  /* font-size: x-small; */
+  font-size: xx-smell ;
+}
+
+
+
+.RTGNo2{
+  /* width: 22px;
+  height: 40px; */
+  width: 20px;
+  height: 17px;
+  background-color: #FBCB04;
+  border-color: rgb(31, 31, 140);
+  border-style: solid;
+  border-width: 1px;
+  font-size: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.RTGNo3{
+  width: 15px;
+  height: 10px;
+  background-color: rgb(31, 31, 140);
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.testWord::before{
+  content: "fuck u ";
+}
+
+.flexDCol{
+  margin: 0 0 0 10px  ;
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
 }

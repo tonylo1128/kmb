@@ -1,6 +1,5 @@
 import * as typeForAction from '../action/type'
 import * as XLSX from 'xlsx';
-import { exportDefaultSpecifier } from '@babel/types';
 
 let data = []; 
 let startTime =[];
