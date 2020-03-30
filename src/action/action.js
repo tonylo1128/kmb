@@ -176,3 +176,10 @@ export function getLocation(){
     }
   }
 
+
+  export function handleSearchInput (inputSearchValue, busDataCheck){
+    return {
+      type: type.SEARCH_INPUT_FUNCTION,
+      payload: {inputSearchValue, busDataCheck}
+    }
+  }

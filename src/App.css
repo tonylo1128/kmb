@@ -165,9 +165,6 @@
   
 }
 
-.testWord::before{
-  content: "fuck u ";
-}
 
 .flexDCol{
   margin: 0 0 0 10px  ;
@@ -176,4 +173,31 @@
   display: flex;
   align-items: center;
   /* justify-content: center; */
+}
+
+
+.inputFile+ label {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: white;
+  background-color: black;
+  display: inline-block;
+}
+
+
+
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 25%;
 }

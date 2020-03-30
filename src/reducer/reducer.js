@@ -23,7 +23,9 @@ const initstate = {
     ],
     tempForRoute:"",
     tempForTime:[],
-    selectedBoundWithDetails:[]
+    selectedBoundWithDetails:[],
+    searchInput: "",
+    searchResult: []
 };
 
 export default function (state=initstate, {type, payload} ){
@@ -150,6 +152,33 @@ export default function (state=initstate, {type, payload} ){
           ...state,
           tempForRoute: payload
         }
+
+      case typeForAction.SEARCH_INPUT_FUNCTION:
+        console.log("the serch fun is working !!!! ")
+        const temp = payload.busDataCheck;
+        const tempResult =[];
+        if(temp != null){
+          for(let i=0; i<temp.length; i++  ){
+            
+            let t = Object.values(temp[i])
+            t.map((item, index)=>{
+              if(item == payload.inputSearchValue){
+                console.log("FIND A MATCH ! AND IT IS !")
+                console.log("If esle find this : " + item+ index)
+                console.log(t)
+                tempResult.push(t)
+              }
+            })
+          }
+        }
+        return {
+          ...state,
+          searchInput : payload,
+          searchResult: tempResult
+        }
+
+
+
       default:
         return state
   }

@@ -13,7 +13,9 @@ function InsertExcel({
   getLocation,
   croods,
   callApiGetData,
-  callApiTestingFuction
+  callApiTestingFuction,
+  handleSearchInput,
+  realObj
 }) {
 
   useEffect(() => {
@@ -36,8 +38,10 @@ function InsertExcel({
           </Nav>
           
           <Form inline>
+            {/* <label for="files" className=""> Upload Your Excel Here !</label> */}
             <input
-                className="text-light"
+                id="files"
+                className="text-light "
                 type="file"
                 accept=".xlsx, .xls"
                 onChange={event => handleFileInput(event.target.files[0])}
@@ -59,6 +63,11 @@ function InsertExcel({
             >
               Upload
             </Button>
+
+
+            <input 
+            onChange={(event)=>handleSearchInput(event.target.value, realObj)}
+            type="text" name="search" placeholder="Search.."></input>
           </Form>
         </Navbar.Collapse>
       </Navbar>
@@ -68,7 +77,8 @@ function InsertExcel({
 
 const mapStateToProps = state => ({
   excel: state.reducer.excel,
-  croods: state.reducer.croods
+  croods: state.reducer.croods,
+  realObj: state.reducer.realObj
 });
 
 const mapsStateToAction = dispatch => ({
@@ -77,7 +87,8 @@ const mapsStateToAction = dispatch => ({
   callApiForPostData: input => dispatch(action.callApiForPostData(input)),
   getLocation: ()=>dispatch(action.getLocation()),
   callApiGetData: () => dispatch(action.callApiGetData()),
-  callApiTestingFuction:()=> dispatch(action.callApiTestingFuction())
+  callApiTestingFuction:()=> dispatch(action.callApiTestingFuction()),
+  handleSearchInput: (input, busDataObj)=> dispatch(action.handleSearchInput(input,busDataObj))
 });
 
 export default connect(

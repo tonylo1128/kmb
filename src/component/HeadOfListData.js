@@ -45,7 +45,7 @@ function HeadOfListData({route,busCom,dst }) {
 
 
         
-            <div className="testWord">"Testing";</div>
+        
         
         </div>
           

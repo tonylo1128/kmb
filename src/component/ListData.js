@@ -1,89 +1,87 @@
 import React from "react";
-import { ListGroup, Row, Col, Card} from "react-bootstrap";
+import { ListGroup, Row, Col, Card } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as action from "../action/action";
-import HeadOfListData from "./HeadOfListData"
+import HeadOfListData from "./HeadOfListData";
+import ShowResult from "./ShowResult";
 
-import {convertCoord} from "./convertCoord"
+import { convertCoord } from "./convertCoord";
 
-function ListData({ excel,realObj }) {
-  var startTime;
-  var endTime;
-
+function ListData({ excel, realObj, searchResult, searchInput}) {
   return (
-    
     <Row>
-      {console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")}
-      {console.log(realObj)}
-      {console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")}
+      {searchResult.length>0 ? (
+        <ShowResult passData={searchResult} />
+      ) : 
+      
 
-
-      {realObj != null ? (
+      realObj != null && (searchInput== null || searchInput== "") ? (
         realObj.map((item, index) => (
-           
-          
           <Col>
             <div className="centerStyle topDownMargin">
-            
               {/* <div className=""> </div> */}
 
+              <div className="cardContainer font">
+                <HeadOfListData
+                  route={item.路線}
+                  busCom={item.路線所屬公司}
+                  dst={item.目的地}
+                />
 
+                <div>
+                  {item.完成挑戰 === "未完成" ? (
+                    <h6 className="MarginTextCard" style={{ color: "red" }}>
+                      {item.完成挑戰}
+                    </h6>
+                  ) : (
+                    <h6 className="MarginTextCard" style={{ color: "green" }}>
+                      {item.完成挑戰}
+                    </h6>
+                  )}
 
-              
-              <div className="cardContainer font"> 
-              
-              <HeadOfListData
-              route={item.路線}
-              busCom={item.路線所屬公司}
-              dst={item.目的地}/>
+                  <hr />
+                  <h6 className="MarginTextCard">
+                    {" "}
+                    {item.起點} {item.方向} {item.目的地}{" "}
+                  </h6>
 
-
-                  <div >
-                  
-                  
-                  {
-                    item.完成挑戰 ==="未完成" ?
-                    <h6 className="MarginTextCard" style={{color: "red"}} >{item.完成挑戰}</h6>
-                    :
-                    <h6 className="MarginTextCard" style={{color: "green"}} >{item.完成挑戰}</h6>
-                  }
-
-
-
-
-                  <hr/>
-                  <h6 className="MarginTextCard"> {item.起點}  {item.方向} {item.目的地} </h6>
-
-                  
-
-                  {item.開始時間 !=null?
-                  <h6 className="MarginTextCard"> {(item.開始時間).substring(11, 21)} to {(item.結束時間).substring(11, 21)}</h6>
-                  :
-                  ""
-                  }
-
+                  {item.開始時間 != null ? (
+                    <h6 className="MarginTextCard">
+                      {" "}
+                      {item.開始時間.substring(11, 21)} to{" "}
+                      {item.結束時間.substring(11, 21)}
+                    </h6>
+                  ) : (
+                    ""
+                  )}
                 </div>
-
-
               </div>
-
-
-
-
-
             </div>
           </Col>
         ))
-      ) : (
-        <h1>Nothing is here ~ </h1>
-      )}
+      )
+
+
+
+
+
+
+
+
+
+       : 
+        <h1> No search result </h1>
+      
+      }
     </Row>
-   );
+  );
 }
 
 const mapStateToProps = state => ({
   excel: state.reducer.excel,
-  realObj: state.reducer.realObj
+  realObj: state.reducer.realObj,
+  searchResult: state.reducer.searchResult,
+  searchInput: state.reducer.searchInput
 });
 
 const mapsStateToAction = dispatch => ({
@@ -92,12 +90,4 @@ const mapsStateToAction = dispatch => ({
   callApiForPostData: input => dispatch(action.callApiForPostData(input))
 });
 
-export default connect(
-  mapStateToProps,
-  mapsStateToAction
-)(ListData);
-
-
-
-
-
+export default connect(mapStateToProps, mapsStateToAction)(ListData);

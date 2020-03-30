@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import GetTime from "./component/GetTime";
 import GoogleMapComponent from "./component/GoogleMapComponent"
 
+
 function App({
   excel,
   handleFileInput,
@@ -19,7 +20,9 @@ function App({
   callApiGetData,
   croods,
   temp,
-  getLocation
+  getLocation,
+  searchInput,
+  searchResult
 }) {
   useEffect(() => {
     callApiGetData();
@@ -38,6 +41,7 @@ function App({
       <InsertExcel />
 
       <Container className="main-container" >
+        
       
         <Switch>
           
@@ -58,7 +62,6 @@ function App({
        
         </Switch>
         {/* <GetTime/> */}
-        
       </Container>
       
     </div>
@@ -69,7 +72,9 @@ function App({
 const mapStateToProps = state => ({
   croods: state.reducer.croods,
   excel: state.reducer.excel,
-  temp: state.reducer.temp
+  temp: state.reducer.temp,
+  searchInput : state.reducer.searchInput,
+  searchResult : state.reducer.searchResult,
 });
 
 const mapsStateToAction = dispatch => ({
