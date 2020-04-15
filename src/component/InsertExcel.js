@@ -24,7 +24,7 @@ function InsertExcel({
 
   return (
    
-    <Navbar style={{ backgroundColor: '#4184DB' }} expand="lg">
+    <Navbar className="nav_bar fixed-top"  expand="lg">
         <Navbar.Brand className="text-light" >
           <Link to="/" style={{color: '#ffffff'}}>KMBPJ</Link>
         </Navbar.Brand>

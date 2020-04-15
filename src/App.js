@@ -10,6 +10,7 @@ import ListData from "./component/ListData";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import GetTime from "./component/GetTime";
 import GoogleMapComponent from "./component/GoogleMapComponent"
+import {handleScroll} from "./component/helper"
 
 
 function App({
@@ -22,11 +23,16 @@ function App({
   temp,
   getLocation,
   searchInput,
-  searchResult
+  searchResult,
+  // handleScroll
 }) {
   useEffect(() => {
+    window.addEventListener('scroll', handleScroll.bind(this));
     callApiGetData();
   }, []);
+
+
+
 
   let buttonStyle = {
     position: "absolute", 
@@ -40,7 +46,10 @@ function App({
     <div className="App">
       <InsertExcel />
 
-      <Container className="main-container" >
+      <div 
+        className="main-container"
+        // onScroll={ event =>handleScroll(event.target)} 
+      >
         
       
         <Switch>
@@ -62,7 +71,7 @@ function App({
        
         </Switch>
         {/* <GetTime/> */}
-      </Container>
+      </div>
       
     </div>
   </Router>
@@ -80,6 +89,7 @@ const mapStateToProps = state => ({
 const mapsStateToAction = dispatch => ({
   callApiGetData: () => dispatch(action.callApiGetData()),
   getLocation: ()=>dispatch(action.getLocation()),
+  // handleScroll: event => dispatch(action.handleScroll(event))
 });
 
 export default connect(

@@ -183,3 +183,19 @@ export function getLocation(){
       payload: {inputSearchValue, busDataCheck}
     }
   }
+
+  // export function handleScroll (event){
+  //   let domElement = event.target;
+
+  //   console.log("target.scrollHeight:");
+  //   console.log(domElement.scrollHeight);
+  //   console.log("target.scrollTop:");
+  //   console.log(domElement.scrollTop);
+  //   console.log("target.clientHeight:");
+  //   console.log(domElement.clientHeight);
+
+
+  //   if (domElement.scrollHeight - domElement.scrollTop === domElement.clientHeight){
+  //     console.log("I am at the bottom ! ")
+  //   }
+  // }

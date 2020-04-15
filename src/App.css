@@ -3,7 +3,11 @@
   /* display: flex; */
 }
 
-
+.uploadExcel{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
 
 @media only screen and (max-width: 768px) {
   .main-container {
@@ -17,6 +21,20 @@
 @media only screen and (min-width: 768px) {
  
   
+}
+
+.nav_bar{
+  background-color: #4184DB;
+  /* top: 0;
+  position: sticky;
+  position: -webkit-sticky; */
+  
+  /* sticky: top; */
+}
+
+.main-container {
+  padding: 75px 0 0 0;
+  overflow: 'scroll'
 }
 
 .cardContainer{
@@ -44,7 +62,7 @@
 .headerOfCard{
   display: flex;
   flex-direction: row;
-  border-style: solid;
+  /* border-style: solid; */
   /* justify-content: space-between; */
 }
 
@@ -175,6 +193,10 @@
   /* justify-content: center; */
 }
 
+.inputFile{
+	opacity: 0;
+	/* position: absolute; */
+}
 
 .inputFile+ label {
   font-size: 1.25em;
@@ -201,3 +223,61 @@ input[type=text] {
 input[type=text]:focus {
   width: 25%;
 }
+
+/* .bus-container{
+  width: 50px;
+  background-color: yellow;
+  padding: 5px 0;
+  position: relative;
+  -webkit-clip-path: polygon(0 5%, 20% 5%, 30% 0, 70% 0, 79% 5%, 100% 5%, 100% 85%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0% 85%);
+clip-path: polygon(0 5%, 20% 5%, 30% 0, 70% 0, 79% 5%, 100% 5%, 100% 85%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0% 85%);
+  
+}
+.top, .middle {
+  border-bottom: 1px solid blue;
+}
+.top {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: -3px;
+  
+}
+
+.top .img-wrapper{
+  width: 35px;
+}
+
+.top .img-wrapper img {
+  width: 100%;
+  object-fit: contain;
+}
+
+
+.middle {
+  width: 100%;
+  padding: 5px 0;
+  text-align: center;
+  font-size: 8px;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  padding-top: 5px;
+  
+}
+
+.bottom .icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  background-color: blue;
+  color: white;
+} */
