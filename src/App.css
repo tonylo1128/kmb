@@ -32,9 +32,16 @@
   /* sticky: top; */
 }
 
+.firstContainer{
+  display: flex;
+  justify-content: center;
+}
+
 .main-container {
   padding: 75px 0 0 0;
-  overflow: 'scroll'
+  overflow: 'scroll';
+  width: 80%;
+  
 }
 
 .cardContainer{

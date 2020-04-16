@@ -42,8 +42,10 @@ function App({
     <div className="App">
       <InsertExcel />
 
-      <MainContainer/>
-      
+      <div className="firstContainer">
+        <MainContainer/>
+      </div>
+
     </div>
   </Router>
   );
