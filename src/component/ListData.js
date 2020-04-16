@@ -16,8 +16,7 @@ function ListData({ excel, realObj, searchResult, searchInput}) {
       
 
       realObj != null ? (
-        console.log("AAAAAAAAAAAAAAAAAA"),
-        console.log(realObj),
+        
         realObj.map((item, index) => (
           <Col>
             <div className="centerStyle topDownMargin">

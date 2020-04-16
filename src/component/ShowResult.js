@@ -62,11 +62,6 @@ function ShowResult({ passData}) {
           </Col>
           })
         }
-
-
-     
-
-
       
     </Row>
    );
