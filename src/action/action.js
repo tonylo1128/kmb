@@ -89,11 +89,14 @@ export function getLocation(){
   export function callApiGetData(page, per_page){
     pageValue = page;
     perPageValue = per_page;
-    console.log("PageValue is :"+pageValue)
-    console.log("PerPageValue is :"+perPageValue)
+    // console.log("PageValue is :"+pageValue)
+    // console.log("PerPageValue is :"+perPageValue)
+    console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////")
+    let url = `${process.env.REACT_APP_BASE_API_URL}/getdata?page`+page+`&per_page=`+per_page
+    console.log(url)
     return dispatch =>{
       // return axios.get(`${process.env.REACT_APP_BASE_API_URL}`)
-      return axios.get(`${process.env.REACT_APP_BASE_API_URL}/getdata?page`+page+`&per_page=`+per_page)
+      return axios.get(`${process.env.REACT_APP_BASE_API_URL}/getdata?page=`+page+`&per_page=`+per_page)
       .then(response=>{
         pageValue++;
         console.log(response.data)
