@@ -3,9 +3,7 @@ import * as XLSX from 'xlsx';
 import axios from "axios";
 
 require('dotenv');
-
-
-let data = []; 
+ 
 
 export function handleFileInput(inputTemp){
       return {
@@ -31,12 +29,6 @@ export function handleFileInput(inputTemp){
 }
 
 
-export function getDataApiFun(returnDataFromNodejs){
-  return{
-    type: type.CALL_API_GET_DATA,
-    payload: returnDataFromNodejs
-  }
-}
 
 export function getLocation(){
   return dispatch =>{
@@ -90,16 +82,49 @@ export function getLocation(){
     }
   }
 
-  export function callApiGetData(){
+
+  let pageValue=0;
+  let perPageValue=0;
+
+  export function callApiGetData(page, per_page){
+    pageValue = page;
+    perPageValue = per_page;
+    console.log("PageValue is :"+pageValue)
+    console.log("PerPageValue is :"+perPageValue)
     return dispatch =>{
-      // return axios.get("https://still-taiga-23168.herokuapp.com/")
-      return axios.get(`${process.env.REACT_APP_BASE_API_URL}`)
+      // return axios.get(`${process.env.REACT_APP_BASE_API_URL}`)
+      return axios.get(`${process.env.REACT_APP_BASE_API_URL}/getdata?page`+page+`&per_page=`+per_page)
       .then(response=>{
+        pageValue++;
         console.log(response.data)
         dispatch(getDataApiFun(response.data.recieveRespFromkmbDataRepos))
       })
     }
   }
+
+  export function getDataApiFun(returnDataFromNodejs){
+    return{
+      type: type.CALL_API_GET_DATA,
+      payload: returnDataFromNodejs
+    }
+  }
+  
+
+  
+
+  export function handleScroll (event){
+    return (dispatch)=>{
+      if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+        // you're at the bottom of the page
+        console.log("Bottom of page");
+        dispatch(callApiGetData(pageValue, perPageValue))
+      }
+    }
+}
+
+
+
+
 
   export function callApiForRouteData(route, serviceType, bound){
     console.log("TESTTESTTESTTESTTESTTEST")
@@ -184,18 +209,3 @@ export function getLocation(){
     }
   }
 
-  // export function handleScroll (event){
-  //   let domElement = event.target;
-
-  //   console.log("target.scrollHeight:");
-  //   console.log(domElement.scrollHeight);
-  //   console.log("target.scrollTop:");
-  //   console.log(domElement.scrollTop);
-  //   console.log("target.clientHeight:");
-  //   console.log(domElement.clientHeight);
-
-
-  //   if (domElement.scrollHeight - domElement.scrollTop === domElement.clientHeight){
-  //     console.log("I am at the bottom ! ")
-  //   }
-  // }

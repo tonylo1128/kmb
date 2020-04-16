@@ -15,7 +15,9 @@ function ListData({ excel, realObj, searchResult, searchInput}) {
       ) : 
       
 
-      realObj != null && (searchInput== null || searchInput== "") ? (
+      realObj != null ? (
+        console.log("AAAAAAAAAAAAAAAAAA"),
+        console.log(realObj),
         realObj.map((item, index) => (
           <Col>
             <div className="centerStyle topDownMargin">
@@ -70,7 +72,7 @@ function ListData({ excel, realObj, searchResult, searchInput}) {
 
 
        : 
-        <h1> No search result </h1>
+        ""
       
       }
     </Row>

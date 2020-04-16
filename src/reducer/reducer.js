@@ -32,9 +32,11 @@ export default function (state=initstate, {type, payload} ){
   
   switch(type) {
     case typeForAction.CALL_API_GET_DATA:
+      console.log("BBBBBBBBBBBBBBBBBBBBB")
+      console.log(payload)
       return {
         ...state,
-        realObj: payload
+        realObj: [...state.realObj, ...payload]
       }
 
     case typeForAction.HANDLE_EXCELFILE_INPUT:
