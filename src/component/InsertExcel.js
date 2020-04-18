@@ -15,12 +15,13 @@ function InsertExcel({
   callApiGetData,
   callApiTestingFuction,
   handleSearchInput,
-  realObj
+  realObj,
+  serverSideSearchFun
 }) {
 
-  useEffect(() => {
-    callApiGetData();
-  }, []);
+  // useEffect(() => {
+  //   callApiGetData();
+  // }, []);
 
   return (
    
@@ -66,7 +67,8 @@ function InsertExcel({
 
 
             <input 
-            onChange={(event)=>handleSearchInput(event.target.value, realObj)}
+            // onChange={(event)=>handleSearchInput(event.target.value, realObj)}
+            onChange={(event)=>serverSideSearchFun(event.target.value)}
             type="text" name="search" placeholder="Search.."></input>
           </Form>
         </Navbar.Collapse>
@@ -88,7 +90,8 @@ const mapsStateToAction = dispatch => ({
   getLocation: ()=>dispatch(action.getLocation()),
   callApiGetData: () => dispatch(action.callApiGetData()),
   callApiTestingFuction:()=> dispatch(action.callApiTestingFuction()),
-  handleSearchInput: (input, busDataObj)=> dispatch(action.handleSearchInput(input,busDataObj))
+  handleSearchInput: (input, busDataObj)=> dispatch(action.handleSearchInput(input,busDataObj)),
+  serverSideSearchFun: (input) =>dispatch(action.serverSideSearchFun(input))
 });
 
 export default connect(

@@ -8,43 +8,44 @@ function ShowResult({ passData}) {
 
 
   return (
-    
     <Row>
-
-
-     {
+     {  
+     console.log("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+     console.log(passData),
          passData.map((item, index)=>{
+          console.log("TESTIGGGGGGGGGGG  ")
+           console.log(item)
             return <Col>
             <div className="centerStyle topDownMargin">
       
               <div className="cardContainer font"> 
               
               <HeadOfListData
-              route={item[2]}
-              busCom={item[1]}
-              dst={item[3]}/>
+              route={item.路線}
+              busCom={item.路線所屬公司}
+              dst={item.目的地}/>
 
 
                   <div >
                   
                   
                   {
-                    item[6] ==="未完成" ?
-                    <h6 className="MarginTextCard" style={{color: "red"}} >{item[6]}</h6>
+                    item.完成挑戰 ==="未完成" ?
+                    <h6 className="MarginTextCard" style={{color: "red"}} >{item.完成挑戰}</h6>
                     :
-                    <h6 className="MarginTextCard" style={{color: "green"}} >{item[6]}</h6>
+                    <h6 className="MarginTextCard" style={{color: "green"}} >{item.完成挑戰}</h6>
                   }
 
 
 
 
                   <hr/>
-                  <h6 className="MarginTextCard"> {item[3]}  {item[4]} {item[5]} </h6>
+                  <h6 className="MarginTextCard"> {item.起點}  {item.方向} {item.目的地} </h6>
 
                   
 
-                  {item[7] !=null?
-                  <h6 className="MarginTextCard"> {(item[7]).substring(11, 21)} to {(item[8]).substring(11, 21)}</h6>
+                  {item.開始時間 !=null?
+                  <h6 className="MarginTextCard"> {(item.開始時間).substring(11, 21)} to {(item.結束時間).substring(11, 21)}</h6>
                   :
                   ""
                   }

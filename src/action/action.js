@@ -89,8 +89,6 @@ export function getLocation(){
   export function callApiGetData(page, per_page){
     pageValue = page;
     perPageValue = per_page;
-    // console.log("PageValue is :"+pageValue)
-    // console.log("PerPageValue is :"+perPageValue)
     console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////")
     let url = `${process.env.REACT_APP_BASE_API_URL}/getdata?page`+page+`&per_page=`+per_page
     console.log(url)
@@ -209,6 +207,24 @@ export function getLocation(){
     return {
       type: type.SEARCH_INPUT_FUNCTION,
       payload: {inputSearchValue, busDataCheck}
+    }
+  }
+
+  export function serverSideSearchFun(inputSearchValue) {
+    return dispatch => {
+      axios.post(`${process.env.REACT_APP_BASE_API_URL}/seaching`, {inputSearchValue})
+      .then(returnResponse=>{
+        console.log("HERE IS THE RETURN RESPONSE")
+        console.log(returnResponse.data.returnResp)
+        dispatch(sssDispatchFun(returnResponse.data.returnResp, inputSearchValue))
+      })
+    }
+  }
+
+  export function sssDispatchFun(returnResp, inputValue){
+    return {
+      type: type.SERVER_SIDE_SEARCHING,
+      payload: {returnResp, inputValue}
     }
   }
 

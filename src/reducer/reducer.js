@@ -32,8 +32,9 @@ export default function (state=initstate, {type, payload} ){
   
   switch(type) {
     case typeForAction.CALL_API_GET_DATA:
-      console.log("BBBBBBBBBBBBBBBBBBBBB")
+      console.log("Here is the get api function and the payload")
       console.log(payload)
+      console.log("Here is the get api function and the payload")
       return {
         ...state,
         realObj: [...state.realObj, ...payload]
@@ -155,6 +156,8 @@ export default function (state=initstate, {type, payload} ){
           tempForRoute: payload
         }
 
+
+
       case typeForAction.SEARCH_INPUT_FUNCTION:
         console.log("the serch fun is working !!!! ")
         const temp = payload.busDataCheck;
@@ -173,11 +176,22 @@ export default function (state=initstate, {type, payload} ){
             })
           }
         }
+        
         return {
           ...state,
           searchInput : payload,
           searchResult: tempResult
         }
+
+        case typeForAction.SERVER_SIDE_SEARCHING:
+          console.warn("Here is the payload")
+          console.log(payload)
+          console.log("AND NOW REALOBJ ISSSSSSSSSSSSSS:  !!!!!!!!!")
+          console.log(state.realObj)
+          return {
+            searchResult: payload.returnResp,
+            searchInput: payload.inputValue
+          }
 
 
 

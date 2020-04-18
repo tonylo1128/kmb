@@ -10,7 +10,11 @@ import { convertCoord } from "./convertCoord";
 function ListData({ excel, realObj, searchResult, searchInput}) {
   return (
     <Row>
-      {searchResult.length>0 ? (
+      { (searchResult.length>0  || searchInput !="" ) ? (
+        console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzz"),
+        console.log( searchResult ),
+        console.log( searchInput ),
+        console.log("zzzzzzzzzzzzzzzzzzzz"),
         <ShowResult passData={searchResult} />
       ) : 
       
@@ -71,7 +75,7 @@ function ListData({ excel, realObj, searchResult, searchInput}) {
 
 
        : 
-        ""
+        <h1>Sth is wrong ! </h1>
       
       }
     </Row>

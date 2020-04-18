@@ -6,11 +6,10 @@ import ListData from "../component/ListData";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import GetTime from "../component/GetTime";
 import GoogleMapComponent from "../component/GoogleMapComponent"
-import {handleScroll} from "../component/helper"
+
 
 
 function MainContainer({
-  callApiGetData,
   temp,
   handleScroll
 
@@ -60,7 +59,6 @@ const mapStateToProps = state => ({
 });
 
 const mapsStateToAction = dispatch => ({
-  callApiGetData: () => dispatch(action.callApiGetData()),
   getLocation: ()=>dispatch(action.getLocation()),
   handleScroll: ()=>dispatch(action.handleScroll())
 });
