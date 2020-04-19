@@ -157,38 +157,40 @@ export default function (state=initstate, {type, payload} ){
         }
 
 
-
-      case typeForAction.SEARCH_INPUT_FUNCTION:
-        console.log("the serch fun is working !!!! ")
-        const temp = payload.busDataCheck;
-        const tempResult =[];
-        if(temp != null){
-          for(let i=0; i<temp.length; i++  ){
+        //This is local seraching ! ! ! 
+      // case typeForAction.SEARCH_INPUT_FUNCTION:
+      //   console.log("the serch fun is working !!!! ")
+      //   const temp = payload.busDataCheck;
+      //   const tempResult =[];
+      //   if(temp != null){
+      //     for(let i=0; i<temp.length; i++  ){
             
-            let t = Object.values(temp[i])
-            t.map((item, index)=>{
-              if(item == payload.inputSearchValue){
-                console.log("FIND A MATCH ! AND IT IS !")
-                console.log("If esle find this : " + item+ index)
-                console.log(t)
-                tempResult.push(t)
-              }
-            })
-          }
-        }
+      //       let t = Object.values(temp[i])
+      //       t.map((item, index)=>{
+      //         if(item == payload.inputSearchValue){
+      //           console.log("FIND A MATCH ! AND IT IS !")
+      //           console.log("If esle find this : " + item+ index)
+      //           console.log(t)
+      //           tempResult.push(t)
+      //         }
+      //       })
+      //     }
+      //   }
         
-        return {
-          ...state,
-          searchInput : payload,
-          searchResult: tempResult
-        }
+      //   return {
+      //     ...state,
+      //     searchInput : payload,
+      //     searchResult: tempResult
+      //   }
 
+        //This is server side searching
         case typeForAction.SERVER_SIDE_SEARCHING:
           console.warn("Here is the payload")
           console.log(payload)
           console.log("AND NOW REALOBJ ISSSSSSSSSSSSSS:  !!!!!!!!!")
           console.log(state.realObj)
           return {
+            ...state,
             searchResult: payload.returnResp,
             searchInput: payload.inputValue
           }

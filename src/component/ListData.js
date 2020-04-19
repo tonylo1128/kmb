@@ -16,8 +16,9 @@ function ListData({ excel, realObj, searchResult, searchInput}) {
         console.log( searchInput ),
         console.log("zzzzzzzzzzzzzzzzzzzz"),
         <ShowResult passData={searchResult} />
-      ) : 
+      ) 
       
+      : 
 
       realObj != null ? (
         
@@ -31,18 +32,11 @@ function ListData({ excel, realObj, searchResult, searchInput}) {
                   route={item.路線}
                   busCom={item.路線所屬公司}
                   dst={item.目的地}
+                  state={item.完成挑戰}
                 />
 
                 <div>
-                  {item.完成挑戰 === "未完成" ? (
-                    <h6 className="MarginTextCard" style={{ color: "red" }}>
-                      {item.完成挑戰}
-                    </h6>
-                  ) : (
-                    <h6 className="MarginTextCard" style={{ color: "green" }}>
-                      {item.完成挑戰}
-                    </h6>
-                  )}
+                  
 
                   <hr />
                   <h6 className="MarginTextCard">

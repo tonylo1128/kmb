@@ -20,8 +20,9 @@ function InsertExcel({
 }) {
 
   // useEffect(() => {
-  //   callApiGetData();
+  //   callApiGetData(1, 30);
   // }, []);
+
 
   return (
    

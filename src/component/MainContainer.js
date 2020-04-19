@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../App.css"
+import "../App.scss"
 import * as action from "../action/action";
 import { connect } from "react-redux";
 import ListData from "../component/ListData";

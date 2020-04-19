@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./App.css";
+import "./App.scss";
 import { connect } from "react-redux";
 import * as action from "./action/action";
 import InsertExcel from "./component/InsertExcel";

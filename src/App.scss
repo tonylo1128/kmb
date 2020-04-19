@@ -69,9 +69,18 @@
 .headerOfCard{
   display: flex;
   flex-direction: row;
+  // justify-content: center;
   /* border-style: solid; */
-  /* justify-content: space-between; */
+  
 }
+
+.position-style{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 0 70px;
+}
+
 
 .h5style{
   margin: 0 0 0 1rem;
