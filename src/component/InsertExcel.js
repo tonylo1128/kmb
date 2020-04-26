@@ -36,7 +36,9 @@ function InsertExcel({
             {/* <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#home">Home</Nav.Link> */}
             <Nav.Link style={{ display: 'flex', alignItems: 'center' }}><Link to="/gettime" style={{ color: '#ffffff',  }}>Get Time</Link></Nav.Link>
-            <Nav.Link style={{ display: 'flex', alignItems: 'center' }}><Link to="googlemapapi" style={{ color: '#ffffff',  }}>GoogleMapAPI</Link></Nav.Link>
+            <Nav.Link style={{ display: 'flex', alignItems: 'center' }}><Link to="/googlemapapi" style={{ color: '#ffffff',  }}>GoogleMapAPI</Link></Nav.Link>
+            <Nav.Link style={{ display: 'flex', alignItems: 'center' }}><Link to="/Instagram" style={{ color: '#ffffff',  }}>Instagram</Link></Nav.Link>
+            
           </Nav>
           
           <Form inline>

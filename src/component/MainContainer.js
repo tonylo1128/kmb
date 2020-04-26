@@ -6,6 +6,7 @@ import ListData from "../component/ListData";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import GetTime from "../component/GetTime";
 import GoogleMapComponent from "../component/GoogleMapComponent"
+import Instagram from "./Instagram"
 
 
 
@@ -42,6 +43,10 @@ function MainContainer({
 
           <Route exact path="/googlemapapi">
             <GoogleMapComponent/>
+          </Route>
+
+          <Route exact path="/instagram">
+            <Instagram/>
           </Route>
 
        

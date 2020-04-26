@@ -25,7 +25,8 @@ const initstate = {
     tempForTime:[],
     selectedBoundWithDetails:[],
     searchInput: "",
-    searchResult: []
+    searchResult: [],
+    igOauthReturnHtml: []
 };
 
 export default function (state=initstate, {type, payload} ){
@@ -194,6 +195,13 @@ export default function (state=initstate, {type, payload} ){
             searchResult: payload.returnResp,
             searchInput: payload.inputValue
           }
+        
+        case typeForAction.INSTAGRAM_OAUTH:
+          return {
+            ...state,
+            igOauthReturnHtml: payload
+          }
+
 
 
 

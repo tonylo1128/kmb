@@ -230,3 +230,20 @@ export function getLocation(){
     }
   }
 
+
+  export function igOauthFun(){
+    return dispatch =>{
+      axios.get("https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=http://localhost:3000/Instagram&response_type=code")
+      .then( response =>{
+        console.log(response.data)
+        dispatch(dispatchActionFor(response.data))
+      })
+    }
+  }
+
+  export function dispatchActionFor (returnDataFromIG){
+    return {
+      type: type.INSTAGRAM_OAUTH,
+      payload: returnDataFromIG
+    }
+  }
