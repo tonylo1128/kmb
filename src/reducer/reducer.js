@@ -196,12 +196,7 @@ export default function (state=initstate, {type, payload} ){
             searchInput: payload.inputValue
           }
         
-        case typeForAction.INSTAGRAM_OAUTH:
-          return {
-            ...state,
-            igOauthReturnHtml: payload
-          }
-
+        
 
 
 

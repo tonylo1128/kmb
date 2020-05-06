@@ -113,12 +113,18 @@ export function getLocation(){
 
   
 
-  export function handleScroll (event){
+  export function handleScroll (){
+    
     return (dispatch)=>{
-      if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+      if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight  ) {
         // you're at the bottom of the page
-        console.log("Bottom of page");
-        dispatch(callApiGetData(pageValue, perPageValue))
+        console.log("Bottom of page and the current url is: ");
+        let url = window.location.href;
+        console.log(url);
+        if ( (url == "http://localhost:3000/"  || url== "http://damp-beyond-67207.herokuapp.com/") ){
+          dispatch(callApiGetData(pageValue, perPageValue))
+        }
+        
       }
     }
 }
@@ -187,7 +193,6 @@ export function getLocation(){
     return (dispatch)=>{
       return axios.get("http://search.kmb.hk/KMBWebSite/Function/FunctionRequest.ashx?action=getstops&route=31m&bound=1&serviceType=1")
       .then(response=>{
-        console.log("Testing-------------------------------")
         let test = response.data.data.route.lineGeometry
         let obj = JSON.parse(test)
         console.log(obj)
@@ -231,19 +236,5 @@ export function getLocation(){
   }
 
 
-  export function igOauthFun(){
-    return dispatch =>{
-      axios.get("https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=http://localhost:3000/Instagram&response_type=code")
-      .then( response =>{
-        console.log(response.data)
-        dispatch(dispatchActionFor(response.data))
-      })
-    }
-  }
 
-  export function dispatchActionFor (returnDataFromIG){
-    return {
-      type: type.INSTAGRAM_OAUTH,
-      payload: returnDataFromIG
-    }
-  }
+

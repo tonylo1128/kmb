@@ -16,10 +16,12 @@ function MainContainer({
 
 }) {
   useEffect(() => {
-    window.addEventListener('scroll', (event)=>{ handleScroll(event) } );
+    
+    
 
   }, []);
-
+    
+    window.addEventListener('scroll', (event)=>{ handleScroll() } );
 
   return (
     
