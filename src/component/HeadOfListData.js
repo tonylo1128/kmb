@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { ListGroup, Row, Col, Card} from "react-bootstrap";
-
+import KmbLogo from "./KmbLogo/KmbLogo"
 
 
 
@@ -14,18 +14,15 @@ function HeadOfListData({route,busCom,dst, state }) {
         <div className="headerOfCard"> 
 
           
-            <div className="round">
-                <div className="kmbBusLogo"> </div>
-                <div className="rectangle">  {route}   </div> 
-            </div>
+            <KmbLogo 
+              route={route}
+            />
             
-            
+            {/* busCompany */}
             <h5 className="h5style"> {busCom}  </h5>
-            
-          
 
 
-
+            {/* status, finish or not */}
             <div className="position-style">
               {state=== "未完成" ? (
                 <h6 className="MarginTextCard" style={{ color: "red" }}>

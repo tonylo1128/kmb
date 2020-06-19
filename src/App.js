@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import "./App.scss";
 import { connect } from "react-redux";
 import * as action from "./action/action";
-import InsertExcel from "./component/InsertExcel";
-import ListData from "./component/ListData";
+import NavBar from "./component/NavBar";
+import ListData from "./component/ListData/ListData";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import GetTime from "./component/GetTime";
-import GoogleMapComponent from "./component/GoogleMapComponent"
+import GoogleMapComponent from "./component/GoogleMap/GoogleMapComponent"
 import MainContainer from "./component/MainContainer"
 
 
@@ -40,7 +40,7 @@ function App({
     <Router>
 
     <div className="App">
-      <InsertExcel />
+      <NavBar />
 
       <div className="firstContainer">
         <MainContainer/>

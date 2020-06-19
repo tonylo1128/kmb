@@ -44,27 +44,8 @@
   
 }
 
-.cardContainer{
-  padding: 5px;
-  width: 18rem;
-  border-style: ridge;
-  border-radius: 1rem;
-  /* text-align: center; */
-  
-}
 
- .centerStyle {
-  display: flex;
-  justify-content: center;
-}
 
-.topDownMargin{
-  margin: 10px 0 10px 0 ;
-}
-
-.MarginTextCard{
-  margin: 5px 5px 5px 5px ;
-}
 
 .headerOfCard{
   display: flex;
@@ -94,17 +75,7 @@
   font-family: 'proxima-nova-soft'
 }
 
-.round{
-  background-color: red;
-  color: black;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: 900;
-}
+
 
 .rectangle{
   width: 2rem;

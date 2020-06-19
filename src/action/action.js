@@ -236,5 +236,41 @@ export function getLocation(){
   }
 
 
+  // export async function getPath(inputHandle, setPath) {
+
+  //   let url =
+  //     "http://search.kmb.hk/KMBWebSite/Function/FunctionRequest.ashx?action=getstops&route=" +
+  //     inputHandle +
+  //     "&serviceType=1&bound=1";
+  //   console.log(url);
+  //   let temp = await axios.get(url)
+    
+  //   console.log(temp.data.data.route)
+  //     // .catch((e) => console.error(e));
+  // }
 
 
+  // .then(({ data }) => {
+  //   console.log("JSUT FINISHHHHHHHHHHHHHHHHHHHHHHHHH")
+  //   let lineGeometry = data.data.route.lineGeometry;
+  //   console.log(lineGeometry)
+  //   setPath(eval(lineGeometry));
+  // })
+
+
+  export const getPath = (inputHandle, setPath, setZoom, setCenter)=> dispatch => {
+    let url =
+        "http://search.kmb.hk/KMBWebSite/Function/FunctionRequest.ashx?action=getstops&route=" +
+        inputHandle +
+        "&serviceType=1&bound=1";
+
+    axios.get(url)
+    .then(({ data }) => {
+        let lineGeometry = data.data.route.lineGeometry;
+
+        let center = lineGeometry[lineGeometry.length/2]  
+        setPath(eval(lineGeometry));
+        setZoom(13)
+        setCenter(center)
+      })
+  }

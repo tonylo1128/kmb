@@ -5,7 +5,7 @@ import * as action from "../action/action";
 import * as XLSX from "xlsx";
 import { Link } from "react-router-dom";
 
-function InsertExcel({
+function NavBar({
   excel,
   handleFileInput,
   storeValueToState,
@@ -100,7 +100,7 @@ const mapsStateToAction = dispatch => ({
 export default connect(
   mapStateToProps,
   mapsStateToAction
-)(InsertExcel);
+)(NavBar);
 
 
 

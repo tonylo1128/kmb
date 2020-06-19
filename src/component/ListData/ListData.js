@@ -1,11 +1,12 @@
 import React from "react";
 import { ListGroup, Row, Col, Card } from "react-bootstrap";
 import { connect } from "react-redux";
-import * as action from "../action/action";
-import HeadOfListData from "./HeadOfListData";
-import ShowResult from "./ShowResult";
+import * as action from "../../action/action";
+import HeadOfListData from "../HeadOfListData";
+import ShowResult from "../ShowResult";
+import "./listData.scss"
 
-import { convertCoord } from "./convertCoord";
+import { convertCoord } from "../convertCoord";
 
 function ListData({ excel, realObj, searchResult, searchInput}) {
   return (
