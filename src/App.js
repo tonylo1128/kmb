@@ -7,7 +7,7 @@ import ListData from "./component/ListData/ListData";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import GetTime from "./component/GetTime";
 import GoogleMapComponent from "./component/GoogleMap/GoogleMapComponent"
-import MainContainer from "./component/MainContainer"
+import MainContainer from "./component/MainContainer/MainContainer"
 
 
 function App({

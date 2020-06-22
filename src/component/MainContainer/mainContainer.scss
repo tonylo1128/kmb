@@ -1,0 +1,17 @@
+.inputCon{
+    display: flex;
+    justify-content: center;
+}
+
+
+.inputCon button, .inputCon input{
+    margin: 15px 0;
+}
+
+.inputCon input{
+    margin-right: 15px;
+}
+
+.inputCon button{
+    margin-left: 15px;
+}

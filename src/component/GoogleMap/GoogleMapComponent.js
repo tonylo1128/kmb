@@ -25,12 +25,14 @@ const Map = compose(
   
 
   return (
+    
     <div >
       
-    
+      {console.log("God DAMN IT LET ME CHECK CHECk"),
+      console.log(center)}
       <GoogleMap 
         defaultZoom={12}
-        defaultCenter={{ lat: 22.324455, lng: 114.171183 }}
+        center={center}
         zoom={zoomLevel}
 
 
