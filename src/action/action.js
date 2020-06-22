@@ -257,25 +257,6 @@ export function sssDispatchFun(returnResp, inputValue) {
   };
 }
 
-// export async function getPath(inputHandle, setPath) {
-
-//   let url =
-//     "http://search.kmb.hk/KMBWebSite/Function/FunctionRequest.ashx?action=getstops&route=" +
-//     inputHandle +
-//     "&serviceType=1&bound=1";
-//   console.log(url);
-//   let temp = await axios.get(url)
-
-//   console.log(temp.data.data.route)
-//     // .catch((e) => console.error(e));
-// }
-
-// .then(({ data }) => {
-//   console.log("JSUT FINISHHHHHHHHHHHHHHHHHHHHHHHHH")
-//   let lineGeometry = data.data.route.lineGeometry;
-//   console.log(lineGeometry)
-//   setPath(eval(lineGeometry));
-// })
 
 
 function findCenterConvert (lineGeometry){
@@ -326,6 +307,25 @@ export function enterKeyHandle( eventValue, inputValue, setPath, setZoom, setCen
       console.log("WE DID IT SUCKER ! ! !");
       dispatch(getPath(inputValue, setPath, setZoom, setCenter));
     }
+  };
+}
+
+
+
+export function featherContent (passInContent){
+  return dispatch=>{
+    alert({passInContent})
+    console.log(passInContent)
+    
+    console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDAAAAAAAAAAAAAAAAAAAAAMMMMMMMMMMMMMMMMMMMNNNNNNNNNNNNNNNN")
+    dispatch(featherContentCallBack(passInContent))
+  }
+}
+
+export function featherContentCallBack(passInContent) {
+  return {
+    type: type.SHOW_DETAIL_CONTENT,
+    payload:passInContent,
   };
 }
 

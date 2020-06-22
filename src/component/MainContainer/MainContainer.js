@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GetTime from "../GetTime";
 import GoogleMapComponent from "../GoogleMap/GoogleMapComponent";
 import Instagram from "../Instagram";
+import DetailContent from "../DetailContent/DetailContent"
 
 function MainContainer({
   temp,
@@ -15,6 +16,7 @@ function MainContainer({
   getPath,
   texting,
   enterKeyHandle,
+  detailContent
 }) {
   useEffect(() => {}, []);
 
@@ -29,7 +31,6 @@ function MainContainer({
   }
 
   const [inputValue, toggleFun] = useToggleForInput();
-
   const [path, setPath] = useState([]);
   const [zoom, setZoom] = useState(12);
   const [center, setCenter] = useState({ lat: 22.324455, lng: 114.171183 });
@@ -39,7 +40,24 @@ function MainContainer({
       <Switch>
         <Route exact path="/">
           <div className="cardstyle">
+
+
+
+
+
+
+          {/* used to onClick then display feather content */}
+          {detailContent ?              
+            <DetailContent/>
+            :
+            ""
+          }
+
+
+
+
             <ListData />
+            
           </div>
         </Route>
 
@@ -55,7 +73,7 @@ function MainContainer({
               onKeyUp={(event) => {
                 enterKeyHandle(event, inputValue, setPath, setZoom, setCenter);
               }}
-              placeholder="Try to enter a KMN route here"
+              placeholder="Try to enter a KMB's bus route here"
               style={{ width: 80 + "%" }}
             />
             <button
@@ -81,6 +99,7 @@ const mapStateToProps = (state) => ({
   temp: state.reducer.temp,
   searchInput: state.reducer.searchInput,
   searchResult: state.reducer.searchResult,
+  detailContent: state.reducer.detailContent
 });
 
 const mapsStateToAction = (dispatch) => ({

@@ -26,7 +26,9 @@ const initstate = {
     selectedBoundWithDetails:[],
     searchInput: "",
     searchResult: [],
-    igOauthReturnHtml: []
+    igOauthReturnHtml: [],
+    detailContent: false,
+    featherContent:{}
 };
 
 export default function (state=initstate, {type, payload} ){
@@ -195,7 +197,18 @@ export default function (state=initstate, {type, payload} ){
             searchResult: payload.returnResp,
             searchInput: payload.inputValue
           }
-        
+          
+
+        case typeForAction.SHOW_DETAIL_CONTENT:
+          console.log("ABOUTTTTTTTTTTTTTTTTTTT TO CHANGE STATE TO FALSEEEEEEEEEEEEEEEEE")
+          console.log(state.detailContent)
+          let changeState = state.detailContent ? false :  true;
+          console.log(payload)
+          return{
+            ...state, 
+            detailContent: changeState,
+            featherContent:payload
+          }
         
 
 

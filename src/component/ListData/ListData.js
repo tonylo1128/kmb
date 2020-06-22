@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ListGroup, Row, Col, Card } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as action from "../../action/action";
@@ -8,14 +8,14 @@ import "./listData.scss"
 
 import { convertCoord } from "../convertCoord";
 
-function ListData({ excel, realObj, searchResult, searchInput}) {
+function ListData({ excel, realObj, searchResult, searchInput, featherContent}) {
+
+
+
+
   return (
-    <Row>
+    <Row className="centerStyle">
       { (searchResult.length>0  || searchInput !="" ) ? (
-        console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzz"),
-        console.log( searchResult ),
-        console.log( searchInput ),
-        console.log("zzzzzzzzzzzzzzzzzzzz"),
         <ShowResult passData={searchResult} />
       ) 
       
@@ -24,8 +24,8 @@ function ListData({ excel, realObj, searchResult, searchInput}) {
       realObj != null ? (
         
         realObj.map((item, index) => (
-          <Col>
-            <div className="centerStyle topDownMargin">
+          
+            <div className="cardMainContainer centerStyle topDownMargin" onClick={()=>featherContent(item)}   key={index}>
               {/* <div className=""> </div> */}
 
               <div className="cardContainer font">
@@ -36,10 +36,9 @@ function ListData({ excel, realObj, searchResult, searchInput}) {
                   state={item.完成挑戰}
                 />
 
-                <div>
-                  
+                <hr />
 
-                  <hr />
+                <div className="cardContainerBottom">
                   <h6 className="MarginTextCard">
                     {" "}
                     {item.起點} {item.方向} {item.目的地}{" "}
@@ -57,16 +56,9 @@ function ListData({ excel, realObj, searchResult, searchInput}) {
                 </div>
               </div>
             </div>
-          </Col>
+          
         ))
       )
-
-
-
-
-
-
-
 
 
        : 
@@ -87,7 +79,8 @@ const mapStateToProps = state => ({
 const mapsStateToAction = dispatch => ({
   handleFileInput: input => dispatch(action.handleFileInput(input)),
   storeValueToState: () => dispatch(action.storeValueToState()),
-  callApiForPostData: input => dispatch(action.callApiForPostData(input))
+  callApiForPostData: input => dispatch(action.callApiForPostData(input)),
+  featherContent: (content)=> dispatch(action.featherContent(content))
 });
 
 export default connect(mapStateToProps, mapsStateToAction)(ListData);

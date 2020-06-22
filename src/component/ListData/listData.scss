@@ -1,27 +1,36 @@
 .centerStyle {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .topDownMargin{
-    margin: 10px 0 10px 0 ;
-  }
+  display: flex;
+  justify-content: center;
+}
 
-  
-  .cardContainer{
-    padding: 5px;
-    width: 18rem;
-    border-style: ridge;
-    border-radius: 1rem;
-    /* text-align: center; */
-    
-  }
+.topDownMargin {
+  margin: 15px;
+}
 
-  .font{
-    font-family: 'proxima-nova-soft'
-  }
+.cardContainer {
+  padding: 10px;
+  width: 18rem;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  /* text-align: center; */
+}
 
-  
-.MarginTextCard{
-    margin: 5px 5px 5px 5px ;
-  }
+.font {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.MarginTextCard {
+  margin: 10px;
+}
+
+.cardContainerBottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardMainContainer {
+  cursor: pointer;
+  min-height: 180px;
+}
