@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux"
 import { ListGroup, Row, Col, Card } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as action from "../../action/action";
+import * as cssAction from "../../action/css/cssAction"
 import HeadOfListData from "../HeadOfListData";
 import ShowResult from "../ShowResult";
 import "./listData.scss"
@@ -11,21 +13,20 @@ import { convertCoord } from "../convertCoord";
 function ListData({ excel, realObj, searchResult, searchInput, featherContent}) {
 
 
+  const cardCss = useSelector(state=>state.cssReducer.cardCss)
+  const dispatch = useDispatch();
+
 
 
   return (
     <Row className="centerStyle">
-      { (searchResult.length>0  || searchInput !="" ) ? (
-        <ShowResult passData={searchResult} />
-      ) 
-      
-      : 
-
-      realObj != null ? (
-        
-        realObj.map((item, index) => (
+      { 
+        realObj != null ? (
           
-            <div className="cardMainContainer centerStyle topDownMargin" onClick={()=>featherContent(item)}   key={index}>
+          ((searchResult.length>0  || searchInput !="" )  ? searchResult  : realObj ).map((item, index) => (
+          
+            <div className="cardMainContainer"  onClick={()=>featherContent(item)}   key={index}>
+            
               {/* <div className=""> </div> */}
 
               <div className="cardContainer font">
@@ -71,9 +72,6 @@ function ListData({ excel, realObj, searchResult, searchInput, featherContent}) 
 
 const mapStateToProps = state => ({
   excel: state.reducer.excel,
-  realObj: state.reducer.realObj,
-  searchResult: state.reducer.searchResult,
-  searchInput: state.reducer.searchInput
 });
 
 const mapsStateToAction = dispatch => ({

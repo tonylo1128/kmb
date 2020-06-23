@@ -1,12 +1,3 @@
-.centerStyle {
-  display: flex;
-  justify-content: center;
-}
-
-.topDownMargin {
-  margin: 15px;
-}
-
 .cardContainer {
   padding: 10px;
   width: 18rem;
@@ -31,6 +22,17 @@
 }
 
 .cardMainContainer {
+  display: flex;
+  justify-content: center;
+
+  margin: 15px;
+  
   cursor: pointer;
   min-height: 180px;
+}
+
+
+.cardMainContainer:hover {
+  transition: .3s;
+  transform: scale(1.1);
 }

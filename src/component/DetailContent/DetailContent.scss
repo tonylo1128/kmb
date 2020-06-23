@@ -1,8 +1,18 @@
-.positionStyle { 
+.positionAndStyleActive{
+  transition: .3s;
+  left:25%;
+  width: 500px;
+  height: 500px; 
+}
 
+
+
+.positionAndStyle { 
+    transition: .3s;
     position: fixed;
 
     top:15%;
+    // left:0;
     width: 500px;
     height: 500px;   
 
@@ -15,9 +25,12 @@
 
   .mainContainer {
     margin: 15px;
+    display: flex;
+    justify-content: center;
 
     h1 {
         word-wrap: break-word;
+        color:white
     }
 
   }

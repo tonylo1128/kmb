@@ -188,7 +188,7 @@ export default function (state=initstate, {type, payload} ){
 
         //This is server side searching
         case typeForAction.SERVER_SIDE_SEARCHING:
-          console.warn("Here is the payload")
+          console.warn("We are in reducer and this is seraching function Here is the payload")
           console.log(payload)
           console.log("AND NOW REALOBJ ISSSSSSSSSSSSSS:  !!!!!!!!!")
           console.log(state.realObj)

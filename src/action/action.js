@@ -1,4 +1,5 @@
 import * as type from "./type";
+import * as cssAction from "./css/cssAction"
 import * as XLSX from "xlsx";
 import axios from "axios";
 import {convertCoord} from "../component/convertCoord"
@@ -241,7 +242,7 @@ export function serverSideSearchFun(inputSearchValue) {
         inputSearchValue,
       })
       .then((returnResponse) => {
-        console.log("HERE IS THE RETURN RESPONSE");
+        console.log("we are here in action.js, HERE IS THE RETURN RESPONSE for searching function");
         console.log(returnResponse.data.returnResp);
         dispatch(
           sssDispatchFun(returnResponse.data.returnResp, inputSearchValue)
@@ -319,6 +320,7 @@ export function featherContent (passInContent){
     
     console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDAAAAAAAAAAAAAAAAAAAAAMMMMMMMMMMMMMMMMMMMNNNNNNNNNNNNNNNN")
     dispatch(featherContentCallBack(passInContent))
+    dispatch(cssAction.cssActiveHandle())
   }
 }
 
@@ -328,6 +330,7 @@ export function featherContentCallBack(passInContent) {
     payload:passInContent,
   };
 }
+
 
 
 
@@ -342,3 +345,9 @@ export function featherContentCallBack(passInContent) {
 // }
 
 
+export function letsTry (){
+  return dispatch=>{
+    console.log("IT WORKSS SUKCER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+  }
+  
+}

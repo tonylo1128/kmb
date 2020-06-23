@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./mainContainer.scss";
 // import "../App.scss"
 import * as action from "../../action/action";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import ListData from "../ListData/ListData";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GetTime from "../GetTime";
@@ -10,14 +10,8 @@ import GoogleMapComponent from "../GoogleMap/GoogleMapComponent";
 import Instagram from "../Instagram";
 import DetailContent from "../DetailContent/DetailContent"
 
-function MainContainer({
-  temp,
-  handleScroll,
-  getPath,
-  texting,
-  enterKeyHandle,
-  detailContent
-}) {
+function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, detailContent, searchResult, realObj, searchInput} ) {
+
   useEffect(() => {}, []);
 
   window.addEventListener("scroll", (event) => {
@@ -34,6 +28,7 @@ function MainContainer({
   const [path, setPath] = useState([]);
   const [zoom, setZoom] = useState(12);
   const [center, setCenter] = useState({ lat: 22.324455, lng: 114.171183 });
+
 
   return (
     <div className="main-container">
@@ -55,8 +50,14 @@ function MainContainer({
 
 
 
+            {/* {(searchResult.length>0  || searchInput !="" ) ?} */}
+            <ListData 
+              searchResult={searchResult}
+              realObj={realObj}
+              searchInput={searchInput}
+            />
 
-            <ListData />
+
             
           </div>
         </Route>
@@ -66,7 +67,7 @@ function MainContainer({
         </Route>
 
         <Route exact path="/googlemapapi">
-          <div class="inputCon">
+          <div className="inputCon">
             <input
               type="text"
               onChange={toggleFun}
@@ -99,7 +100,9 @@ const mapStateToProps = (state) => ({
   temp: state.reducer.temp,
   searchInput: state.reducer.searchInput,
   searchResult: state.reducer.searchResult,
-  detailContent: state.reducer.detailContent
+  detailContent: state.reducer.detailContent,
+  realObj: state.reducer.realObj,
+  
 });
 
 const mapsStateToAction = (dispatch) => ({
