@@ -315,7 +315,7 @@ export function enterKeyHandle( eventValue, inputValue, setPath, setZoom, setCen
 
 export function featherContent (passInContent){
   return dispatch=>{
-    alert({passInContent})
+    // alert({passInContent})
     console.log(passInContent)
     
     console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDAAAAAAAAAAAAAAAAAAAAAMMMMMMMMMMMMMMMMMMMNNNNNNNNNNNNNNNN")

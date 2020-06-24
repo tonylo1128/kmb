@@ -80,17 +80,21 @@ function DetailContent ({}){
                         <div>路線</div>
                         <div>Route</div>
                     </div>
-                    <div className="right">2</div>
+                    <div className="right">
+                        {featherContent.起點} {featherContent.方向} {featherContent.目的地} 
+                    </div>
                 </div>
 
 
 
                 <div className="raw">
                     <div className="left">
-                        <div>日期</div>
+                        <div>結束時間</div>
                         <div>Date</div>
                     </div>
-                    <div className="right">4</div>
+                    <div className="right">
+                        {featherContent.結束時間!=null ?featherContent.結束時間 :"N/A"}
+                    </div>
                 </div>
 
 
@@ -100,7 +104,9 @@ function DetailContent ({}){
                         <div>總行程時間</div>
                         <div>Total Time</div>
                     </div>
-                    <div className="right">6</div>
+                    <div className="right">
+                        {featherContent.總行程時間!="0 小時 00 分" ?featherContent.總行程時間 :"N/A"}
+                    </div>
                 </div>
 
 
@@ -109,7 +115,11 @@ function DetailContent ({}){
                     <div className="left">
                         <div>Instagram Link</div>
                     </div>
-                    <div className="right">8</div>
+                    <div className="right">
+                        <a style={{fontSize:"15px"}} target="_blank" href="https://www.instagram.com/p/B2_lrkQlNE3/">
+                            {featherContent.Instagram記錄連結!=null ?featherContent.Instagram記錄連結 :"N/A"}
+                        </a>
+                    </div>
                 </div>
 
 
@@ -120,7 +130,9 @@ function DetailContent ({}){
                         <div>備註</div>
                         <div>Remake</div>
                     </div>
-                    <div className="right">4</div>
+                    <div className="right">
+                        {featherContent.備註!=null ?featherContent.備註 :"N/A"}
+                    </div>
                 </div>
             </div>
 
