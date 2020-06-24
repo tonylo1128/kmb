@@ -42,11 +42,13 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
 
 
           {/* used to onClick then display feather content */}
-          {detailContent ?              
+          {/* {detailContent ?              
             <DetailContent/>
             :
             ""
-          }
+          } */}
+
+          <DetailContent/>
 
 
 

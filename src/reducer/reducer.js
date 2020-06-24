@@ -27,7 +27,7 @@ const initstate = {
     searchInput: "",
     searchResult: [],
     igOauthReturnHtml: [],
-    detailContent: false,
+    // detailContent: false,
     featherContent:{}
 };
 
@@ -200,13 +200,10 @@ export default function (state=initstate, {type, payload} ){
           
 
         case typeForAction.SHOW_DETAIL_CONTENT:
-          console.log("ABOUTTTTTTTTTTTTTTTTTTT TO CHANGE STATE TO FALSEEEEEEEEEEEEEEEEE")
-          console.log(state.detailContent)
-          let changeState = state.detailContent ? false :  true;
-          console.log(payload)
+          
           return{
             ...state, 
-            detailContent: changeState,
+            // detailContent: !state.detailContent,
             featherContent:payload
           }
         
