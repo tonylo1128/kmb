@@ -9,6 +9,7 @@ import GetTime from "../GetTime";
 import GoogleMapComponent from "../GoogleMap/GoogleMapComponent";
 import Instagram from "../Instagram";
 import DetailContent from "../DetailContent/DetailContent"
+import Loading from "../Loading/Loading"
 
 function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, detailContent, searchResult, realObj, searchInput} ) {
 
@@ -42,15 +43,13 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
 
 
           {/* used to onClick then display feather content */}
-          {/* {detailContent ?              
+
+            
+
+            
+            <Loading/>
+
             <DetailContent/>
-            :
-            ""
-          } */}
-
-          <DetailContent/>
-
-
 
             {/* {(searchResult.length>0  || searchInput !="" ) ?} */}
             <ListData 
@@ -59,6 +58,7 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
               searchInput={searchInput}
             />
 
+            
 
             
           </div>

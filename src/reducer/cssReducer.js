@@ -3,7 +3,8 @@ import * as cssType from "../action/css/cssType"
 
 const initstate = {
     textingNewReducer : true,
-    cardCss: false
+    cardCss: false,
+    loading: false
     
 };
 
@@ -26,6 +27,11 @@ export default function ( state=initstate, {type, payload}){
                 cardCss : false
             }
 
+        case cssType.HANDLE_LOADING_SCREEN:
+            return{
+                ...state,
+                loading: !state.loading
+            }
         
         default:
             return state;

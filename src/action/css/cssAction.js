@@ -14,3 +14,10 @@ export function closeButton(){
     type: cssType.CLOSE_BUTTON_HANDLE,
   }
 }
+
+
+export function loading(){
+  return {
+    type: cssType.HANDLE_LOADING_SCREEN,
+  }
+}
