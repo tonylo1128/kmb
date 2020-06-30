@@ -10,20 +10,8 @@ import GoogleMapComponent from "./component/GoogleMap/GoogleMapComponent"
 import MainContainer from "./component/MainContainer/MainContainer"
 
 
-function App({
-  excel,
-  handleFileInput,
-  storeValueToState,
-  callApiForPostData,
-  callApiGetData,
-  croods,
-  temp,
-  getLocation,
-  searchInput,
-  searchResult,
-}) {
+function App({ callApiGetData }) {
   useEffect(() => {
-    
     callApiGetData(1, 30);
   }, []);
 

@@ -4,7 +4,8 @@ import * as cssType from "../action/css/cssType"
 const initstate = {
     textingNewReducer : true,
     cardCss: false,
-    loading: false
+    loading: false,
+    editting: false
     
 };
 
@@ -31,6 +32,12 @@ export default function ( state=initstate, {type, payload}){
             return{
                 ...state,
                 loading: !state.loading
+            }
+
+        case cssType.HANDLE_EDITTING:
+            return{
+                ...state,
+                editting: !state.editting
             }
         
         default:

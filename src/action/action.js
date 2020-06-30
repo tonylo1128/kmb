@@ -86,30 +86,29 @@ let pageValue = 0;
 let perPageValue = 0;
 
 export function callApiGetData(page, per_page) {
+
   pageValue = page;
   perPageValue = per_page;
-  console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////");
-  let url =
-    `${process.env.REACT_APP_BASE_API_URL}/getdata?page` +
-    page +
-    `&per_page=` +
-    per_page;
+  console.log("TRYINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   to get data form backend");
+  let url =  `${process.env.REACT_APP_BASE_API_URL}/getdata?page` +  page + `&per_page=` +  per_page;
   console.log(url);
   return (dispatch) => {
+    // start loading screen
+    dispatch(cssAction.loading()) 
     // return axios.get(`${process.env.REACT_APP_BASE_API_URL}`)
     return axios
-      .get(
-        `${process.env.REACT_APP_BASE_API_URL}/getdata?page=` +
-          page +
-          `&per_page=` +
-          per_page
-      )
+      .get( `${process.env.REACT_APP_BASE_API_URL}/getdata?page=` + page + `&per_page=` + per_page )
       .then((response) => {
         pageValue++;
         console.log(response.data);
         dispatch(getDataApiFun(response.data.recieveRespFromkmbDataRepos));
+        // end loading screen
+        dispatch(cssAction.loading()) 
       });
   };
+  
+
+  
 }
 
 export function getDataApiFun(returnDataFromNodejs) {
@@ -118,6 +117,12 @@ export function getDataApiFun(returnDataFromNodejs) {
     payload: returnDataFromNodejs,
   };
 }
+
+
+
+
+
+
 
 export function handleScroll() {
   return (dispatch) => {
@@ -315,11 +320,6 @@ export function enterKeyHandle( eventValue, inputValue, setPath, setZoom, setCen
 
 export function featherContent (passInContent){
   return dispatch=>{
-<<<<<<< Updated upstream
-    // alert({passInContent})
-=======
-
->>>>>>> Stashed changes
     console.log(passInContent)
     
     console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDAAAAAAAAAAAAAAAAAAAAAMMMMMMMMMMMMMMMMMMMNNNNNNNNNNNNNNNN")
@@ -354,4 +354,21 @@ export function letsTry (){
     console.log("IT WORKSS SUKCER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   }
   
+}
+
+
+//HERE
+
+export function getSpecificDate(id ,route ,company){
+  console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+  console.log(id ,route ,company)
+  let url = "http://localhost:8081/getspecific";
+  // let url =`${process.env.REACT_APP_BASE_API_URL}/getspecific`
+  return (dispatch)=>{
+    return axios
+    .get(url, {params:{id ,route ,company}})
+    .then(resp=>{
+      dispatch(featherContentCallBack(resp))
+    })
+  }
 }

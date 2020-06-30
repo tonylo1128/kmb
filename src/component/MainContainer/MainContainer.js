@@ -13,8 +13,6 @@ import Loading from "../Loading/Loading"
 
 function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, detailContent, searchResult, realObj, searchInput} ) {
 
-  useEffect(() => {}, []);
-
   window.addEventListener("scroll", (event) => {
     handleScroll();
   });
@@ -29,6 +27,7 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
   const [path, setPath] = useState([]);
   const [zoom, setZoom] = useState(12);
   const [center, setCenter] = useState({ lat: 22.324455, lng: 114.171183 });
+  const loading = useSelector((state)=>state.cssReducer.loading)
 
 
   return (
@@ -46,19 +45,18 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
 
             
 
-            
-            <Loading/>
-
-            <DetailContent/>
-
-            {/* {(searchResult.length>0  || searchInput !="" ) ?} */}
-            <ListData 
-              searchResult={searchResult}
-              realObj={realObj}
-              searchInput={searchInput}
-            />
-
-            
+            {loading?
+              <Loading/>
+            :
+              <div style={{width:"100%",display:"flex",justifyContent: "center"}}>
+                <DetailContent/>
+                <ListData 
+                  searchResult={searchResult}
+                  realObj={realObj}
+                  searchInput={searchInput}
+                />
+              </div>
+            }
 
             
           </div>
