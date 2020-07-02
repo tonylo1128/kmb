@@ -5,7 +5,8 @@ const initstate = {
     textingNewReducer : true,
     cardCss: false,
     loading: false,
-    editting: false
+    editting: false,
+    updateLoading: false
     
 };
 
@@ -23,9 +24,13 @@ export default function ( state=initstate, {type, payload}){
 
         
         case cssType.CLOSE_BUTTON_HANDLE:
+            let edittingTemp;
+            if(state.editting)
+                edittingTemp=false;
             return{
                 ...state,
-                cardCss : false
+                cardCss : false,
+                editting: edittingTemp
             }
 
         case cssType.HANDLE_LOADING_SCREEN:
@@ -38,6 +43,12 @@ export default function ( state=initstate, {type, payload}){
             return{
                 ...state,
                 editting: !state.editting
+            }
+
+        case cssType.HANDLE_UPDATE_LOADING:
+            return{
+                ...state,
+                updateLoading: !state.updateLoading
             }
         
         default:

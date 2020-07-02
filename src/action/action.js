@@ -368,7 +368,11 @@ export function getSpecificDate(id ,route ,company){
     return axios
     .get(url, {params:{id ,route ,company}})
     .then(resp=>{
-      dispatch(featherContentCallBack(resp))
+      console.log("the get function workssssssssssssssssssssssssssssssssssssssssssssssss")
+      console.log(resp)
+      dispatch(featherContentCallBack(resp.data.resp[0]))
+      dispatch(cssAction.callBackForEditting())
+      dispatch(cssAction.updateLoading())
     })
   }
 }

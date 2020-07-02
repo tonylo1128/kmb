@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import * as action from "../../action/action";
 import * as cssAction from "../../action/css/cssAction"
 import HeadOfListData from "../HeadOfListData";
-import ShowResult from "../ShowResult";
 import "./listData.scss"
 
 import { convertCoord } from "../convertCoord";
@@ -19,7 +18,7 @@ function ListData({ excel, realObj, searchResult, searchInput, featherContent}) 
 
 
   return (
-    <Row className="centerStyle">
+    <div className="centerStyle">
       { 
         realObj != null ? (
           
@@ -66,7 +65,7 @@ function ListData({ excel, realObj, searchResult, searchInput, featherContent}) 
         <h1>Sth is wrong ! </h1>
       
       }
-    </Row>
+    </div>
   );
 }
 

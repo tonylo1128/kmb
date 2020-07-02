@@ -4,6 +4,7 @@ import * as cssAction from "../../action/css/cssAction";
 import { connect, useSelector, useDispatch } from "react-redux";
 import "./DetailContent.scss";
 import KmbLogo from "../KmbLogo/KmbLogo";
+import UpdateLoading from "../Loading/UpdateLoading"
 
 import kmbLogo from "../../img/kmbLogo.png";
 
@@ -12,69 +13,42 @@ function DetailContent({}) {
 
   const cardCss = useSelector((state) => state.cssReducer.cardCss);
   const featherContent = useSelector((state) => state.reducer.featherContent);
-  
   const editting = useSelector((state)=>state.cssReducer.editting);
+  const updateLoading = useSelector((state)=>state.cssReducer.updateLoading)
+
   const [inputA, setInputA] = useState("");
   const [inputB, setInputB] = useState("");
   const [inputC, setInputC] = useState("");
   const [inputD, setInputD] = useState("");
   const [inputE, setInputE] = useState("");
-  // const [inputList, setInputList]=useState(["","","",""]);
 
 
-  // const handleInputList = (inputValue, index)=>{
-  //   console.log("WAHTTTTTTTTTTTTTTTTTTTTT WENTTTTTTTTTTTTT WRONGGGGGGGGGGGGGG")
-  //   console.log(inputValue)
-  //   let newTempList = inputList;
-
-  //   newTempList[index]=inputValue;
-  //   setInputList(newTempList)
-  //   console.log(inputList)
-  // }
-
-  // const totalTime = (startTime, endTime)=>{
-
-  //   if(startTime != "" && endTime != ""){
-  //   let actualStartTime = parseInt( startTime.split("T")[1].split(":")[0] ) *60 + parseInt( startTime.split("T")[1].split(":")[1] );
-  //   let actualEndTime = parseInt( endTime.split("T")[1].split(":")[0] ) *60 + parseInt( endTime.split("T")[1].split(":")[1] );
-  //   let total = actualEndTime - actualStartTime;
-
-    
-  //   let hours , mins ="";
-  //   hours = parseInt(total/60);
-  //   mins = ( total/60 - parseInt( total/60 ) ) *60 ;
-    
-  //   if( mins < 1 && mins !=0 ){
-  //     console.log("trueeeeeeeeeee"+mins)
-  //     mins=1;
-  //   }
-  //   else{
-  //     console.log("falseeeeeeeeee"+mins)
-  //     mins = parseInt(mins)
-  //   }
-
-  //   let finalTime = hours  +  "小時"  +  mins  +  "分鐘"
-    
-  //   return hours  +  "小時"  +  mins  +  "分鐘";
-  // }
-  // else{
-  //   return "N/A"
-  // }
-
-  // }
+  useEffect(()=>{
+    // setInputA(featherContent.開始時間)
+    // console.log("DONEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+    // console.log(featherContent)
+    // setInputB(featherContent.結束時間)
+    // setInputD(featherContent.Instagram記錄連結)
+    // setInputE(featherContent.備註)
+  },[])
   
-
   return (
     <div className={cardCss ? "containerDetailContent active" : "containerDetailContent"}>
 
-
+      
 
       <div className="closeCon">
           <div  className="closeButton" onClick={() => dispatch(cssAction.closeButton())} > &#10006; </div>    
       </div>
-
-
+      
       <div className="positionAndStyle">
+
+      {
+        updateLoading?
+        <UpdateLoading/>
+        :
+        ""
+      }
 
         <div className="firstLayer">
 
@@ -165,31 +139,30 @@ function DetailContent({}) {
             </div>
             <div className="right">
 
-            {editting?
+              {editting?
+                  
+                <div>
+                  <input  type="datetime-local" placeholder="ddmmyy,hhmm,hhmm" value={inputA} onChange={(e)=>{setInputA(e.target.value)}}/>
+                  <input  type="datetime-local" placeholder="ddmmyy,hhmm,hhmm" value={inputB} onChange={(e)=>{setInputB(e.target.value)}}/>
+                </div>  
+                // <input  placeholder="dd/mm/yy,hh:mm:ss,hh:mm:ss" value={inputList[0]} onChange={(e)=>{  handleInputList(e.target.value, 1)  }}/>
+                
 
+                :
+                  featherContent.開始時間 != undefined ? (
+                    <div className="dateTime">
+                      <div className="">
+                        {featherContent.開始時間.substring(0, 10)}
+                      </div>
 
-              <div>
-                <input  type="datetime-local" placeholder="ddmmyy,hhmm,hhmm" value={inputA} onChange={(e)=>{setInputA(e.target.value)}}/>
-                <input  type="datetime-local" placeholder="ddmmyy,hhmm,hhmm" value={inputB} onChange={(e)=>{setInputB(e.target.value)}}/>
-              </div>  
-              // <input  placeholder="dd/mm/yy,hh:mm:ss,hh:mm:ss" value={inputList[0]} onChange={(e)=>{  handleInputList(e.target.value, 1)  }}/>
-              
-
-              :
-                featherContent.開始時間 != undefined ? (
-                  <div className="dateTime">
-                    <div className="">
-                      {featherContent.開始時間.substring(0, 10)}
+                      <div className="">
+                        {featherContent.開始時間.substring(11, 21)} -{" "}
+                        {featherContent.結束時間.substring(11, 21)}
+                      </div>
                     </div>
-
-                    <div className="">
-                      {featherContent.開始時間.substring(11, 21)} -{" "}
-                      {featherContent.結束時間.substring(11, 21)}
-                    </div>
-                  </div>
-                ) : (
-                  "N/A"
-                )
+                  ) : (
+                    "N/A"
+                  )
 
               }
 
@@ -263,7 +236,8 @@ function DetailContent({}) {
 
 
       </div>
-
+    
+    {/* the above } is for the "updateLoading" if else */}
 
 
 
@@ -276,7 +250,7 @@ function DetailContent({}) {
             <div className=""> </div>
             <div className=""> </div>
       </div>
-
+    
 
     </div>
   );

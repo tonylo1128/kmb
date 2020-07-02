@@ -49,6 +49,7 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
               <Loading/>
             :
               <div style={{width:"100%",display:"flex",justifyContent: "center"}}>
+                
                 <DetailContent/>
                 <ListData 
                   searchResult={searchResult}

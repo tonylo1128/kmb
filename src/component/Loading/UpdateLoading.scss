@@ -1,0 +1,68 @@
+.udLoadingContainer {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    z-index: 10002;
+
+
+  .transparentBg {
+    position: relative;
+    opacity: 0.5;
+    background: black;
+
+    width: 100%;
+    height: 100%;
+    z-index: 10002;
+  }
+
+  .loadingObj {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10002;
+
+    img {
+      opacity: 1;
+      border-radius: 50%;
+      width: 300px;
+      height: 300px;
+      z-index: 1;
+    }
+
+    .wordContainer {
+      display: flex;
+      color: white;
+
+      .loadingAnimation {
+        margin-left: 5px;
+        display: flex;
+
+        div {
+          margin-left: 2px;
+          animation: ani 0.3s infinite alternate;
+
+          @for $i from 1 through 3 {
+            &:nth-child(#{$i}) {
+              animation-delay: #{$i * 0.1s};
+            }
+          }
+        }
+      }
+
+      @keyframes ani {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.3);
+        }
+      }
+    }
+  }
+}
