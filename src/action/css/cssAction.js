@@ -23,7 +23,7 @@ export function loading() {
 export function totalTime(startTime, endTime) {
   if(startTime !="" && endTime !=""){
 
-  
+
     let actualStartTime =
       parseInt(startTime.split("T")[1].split(":")[0]) * 60 +
       parseInt(startTime.split("T")[1].split(":")[1]);
@@ -54,130 +54,29 @@ export function updateLoading (){
 }
 
 
-export function editting( inputA, inputB, inputC, inputD, inputE, setInputA, setInputB, setInputC, setInputD, setInputE, target) {
-
-  console.log("MOTHERFUCKERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
-  console.log(target)
-  console.log(inputA)
-  console.log(inputB)
-  console.log(inputC)
-  console.log(inputD)
-  console.log(inputE)
-
-  let startTime, endTime, total, igLink, remake = "";
-  let url = `${process.env.REACT_APP_BASE_API_URL}/update`
-  // let url = "http://localhost:8081/update";
-  if (inputA != "" || inputB != "" || inputC != "" || inputD != "" || inputE != "" ) {
-    //30062020,0900,1157
-
-    startTime = inputA.split("T")[0].split("-").join("/") + " " + inputA.split("T")[1] + ":00";
-    endTime = inputB.split("T")[0].split("-").join("/") + " " + inputB.split("T")[1] + ":00";
-    total = totalTime(inputA, inputB);
-    igLink= inputD;
-    remake=inputE;
-
-
-    setInputA(""); setInputB(""); setInputC(""); setInputD(""); setInputE("");
-
-  
-
-  return (dispatch)=>{
-    dispatch(updateLoading())
-    return axios.put(url,{startTime, endTime, total, igLink, remake, target})
-    .then((resp)=>{
-      console.log(resp.data)
-      
-      if(resp.data.respFromReps){
-        console.log("I cant do this all day !")
-        console.log(target.id)
-        dispatch(action.getSpecificDate(target.id, target.路線, target.路線所屬公司))
-        
-      }
-      
-      
-      
-    })
-  }
-}
-else{
-  return {
-    type: cssType.HANDLE_EDITTING,
-  };
-}
-  
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // export function editting( inputA, inputB, inputC, inputD, inputE, setInputA, setInputB, setInputC, setInputD, setInputE, target) {
 
-//   // console.log("MOTHERFUCKERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
-//   // console.log(target)
-//   // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-//   // console.log(inputA)
-//   // console.log(startTime)
-//   // console.log("==========================================")
-//   // console.log(inputB)
-//   // console.log(endTime)
-//   // console.log("==========================================")
-
-//   // console.log(inputC)
-//   // console.log(total)
-//   // console.log("==========================================")
-
-//   // console.log(inputD)
-//   // console.log(igLink)
-//   // console.log("==========================================")
-
-//   // console.log(inputE)
-//   // console.log(remake)
-//   // console.log("==========================================")
-
-
-
-  
-
+//   console.log("MOTHERFUCKERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
+//   console.log(target)
+//   console.log(inputA)
+//   console.log(inputB)
+//   console.log(inputC)
+//   console.log(inputD)
+//   console.log(inputE)
 
 //   let startTime, endTime, total, igLink, remake = "";
 //   let url = `${process.env.REACT_APP_BASE_API_URL}/update`
 //   // let url = "http://localhost:8081/update";
-//   if (inputA != "" || inputB != "" || igLink != target.Instagram記錄連結 || remake != target.備註 ) {
+//   if (inputA != "" || inputB != "" || inputC != "" || inputD != "" || inputE != "" ) {
 //     //30062020,0900,1157
 
-//     console.log(target)
-//     console.log(inputA)
-
-//     if(inputA!="" && inputB!=""){
-//       startTime = inputA.split("T")[0].split("-").join("/") + " " + inputA.split("T")[1] + ":00";
-//       endTime = inputB.split("T")[0].split("-").join("/") + " " + inputB.split("T")[1] + ":00";
-//       total = totalTime(inputA, inputB);
-//     }
-//     else{
-//       startTime = target.開始時間
-//       endTime = target.結束時間
-//       total = target.總行程時間
-//     }
-    
-    
+//     startTime = inputA.split("T")[0].split("-").join("/") + " " + inputA.split("T")[1] + ":00";
+//     endTime = inputB.split("T")[0].split("-").join("/") + " " + inputB.split("T")[1] + ":00";
+//     total = totalTime(inputA, inputB);
 //     igLink= inputD;
 //     remake=inputE;
-  
+
+
 //     setInputA(""); setInputB(""); setInputC(""); setInputD(""); setInputE("");
 
   
@@ -209,6 +108,104 @@ else{
 // }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export function editting( inputA, inputB, inputC, inputD, inputE, setInputA, setInputB, setInputC, setInputD, setInputE, target) {
+
+
+  
+  let startTime, endTime, total, igLink, remake = "";
+  let url = `${process.env.REACT_APP_BASE_API_URL}/update`
+  // let url = "http://localhost:8081/update";
+  if (inputA!=target.開始時間 && inputB!=target.結束時間 || inputD != target.Instagram記錄連結 || inputE != target.備註 ) {
+    console.log("11111st Layerrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+    //30062020,0900,1157
+    // console.log("111111111111111111111111111111111111111111")
+    // console.log(inputA)
+    // console.log(target.開始時間)
+    // console.log("111111111111111111111111111111111111111111")
+
+    // console.log("222222222222222222222222222222222222222222")
+    // console.log(inputB)
+    // console.log(target.結束時間)
+    // console.log("222222222222222222222222222222222222222222")
+
+    // console.log("333333333333333333333333333333333333333333")
+    // console.log(igLink)
+    // console.log(target.Instagram記錄連結)
+    // console.log("333333333333333333333333333333333333333333")
+
+    // console.log("444444444444444444444444444444444444444444")
+    // console.log(remake)
+    // console.log(target.備註)
+    // console.log("444444444444444444444444444444444444444444")
+
+
+
+    
+    if(inputA!=target.開始時間 && inputB!=target.結束時間){
+      console.log("2222222rd Layerrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+      startTime = inputA.split("T")[0].split("-").join("/") + " " + inputA.split("T")[1] + ":00";
+      console.log(inputA)
+      endTime = inputB.split("T")[0].split("-").join("/") + " " + inputB.split("T")[1] + ":00";
+      console.log(endTime)
+      total = totalTime(inputA, inputB)
+    }
+    else{
+      console.log("eeeeeeeeeeeeeeeeeeerd Layerrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+      startTime = target.開始時間
+      endTime = target.結束時間
+      total = target.總行程時間
+    }
+    
+    
+    igLink= inputD;
+    remake=inputE;
+  
+    
+
+  
+
+  return (dispatch)=>{
+    dispatch(updateLoading())
+    return axios.put(url,{startTime, endTime, total, igLink, remake, target})
+    .then((resp)=>{
+      console.log(resp.data)
+      
+      if(resp.data.respFromReps){
+        console.log("I cant do this all day !")
+        console.log(target.id)
+        dispatch(action.getSpecificDate(target.id, target.路線, target.路線所屬公司))
+        
+      }
+      
+      
+      
+    })
+  }
+}
+else{
+  return {
+    type: cssType.HANDLE_EDITTING,
+  };
+}
+  
+}
 
 
 

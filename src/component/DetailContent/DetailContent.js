@@ -24,12 +24,12 @@ function DetailContent({}) {
 
 
   useEffect(()=>{
-    // setInputA(featherContent.開始時間)
-    // console.log("DONEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-    // console.log(featherContent)
-    // setInputB(featherContent.結束時間)
-    // setInputD(featherContent.Instagram記錄連結)
-    // setInputE(featherContent.備註)
+    setInputA(featherContent.開始時間)
+    console.log("DONEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+    console.log(featherContent)
+    setInputB(featherContent.結束時間)
+    setInputD(featherContent.Instagram記錄連結)
+    setInputE(featherContent.備註)
   },[])
   
   return (
@@ -52,7 +52,7 @@ function DetailContent({}) {
 
         <div className="firstLayer">
 
-          <div class="noticeLogo">
+          <div className="noticeLogo">
             <div>乘客通告</div>
             <div>Passanger Notice</div>
           </div>
@@ -178,7 +178,7 @@ function DetailContent({}) {
 
             {editting?
               // <input value={inputA!="" && inputB!=""? setInputC(totalTime(inputA,inputB)) : inputC } onChange={(e)=>{setInputC(e.target.value)}}/>
-              <div> {inputA!="" && inputB!=""? cssAction.totalTime(inputA,inputB) : "N/A" }  </div>
+              <div> {inputA!="" && inputB!="" && inputA!=featherContent.開始時間 && inputB!=featherContent.結束時間? cssAction.totalTime(inputA,inputB) : "N/A" }  </div>
               :
               featherContent.總行程時間
             }

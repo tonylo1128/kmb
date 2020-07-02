@@ -200,11 +200,20 @@ export default function (state=initstate, {type, payload} ){
           
 
         case typeForAction.SHOW_DETAIL_CONTENT:
+
+          let newListOfData = state.realObj;
+          
+          newListOfData.map((item, index)=>{
+            if(item.id == payload.id && item.路線所屬公司 == payload.路線所屬公司 && item.路線 == payload.路線){
+              newListOfData[index] = payload
+            }
+          })
           
           return{
             ...state, 
             // detailContent: !state.detailContent,
-            featherContent:payload
+            featherContent:payload,
+            realObj: newListOfData
           }
         
 

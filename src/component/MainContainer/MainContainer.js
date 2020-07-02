@@ -28,7 +28,7 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
   const [zoom, setZoom] = useState(12);
   const [center, setCenter] = useState({ lat: 22.324455, lng: 114.171183 });
   const loading = useSelector((state)=>state.cssReducer.loading)
-
+  const cardCss = useSelector(state=>state.cssReducer.cardCss)
 
   return (
     <div className="main-container">
@@ -49,8 +49,12 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
               <Loading/>
             :
               <div style={{width:"100%",display:"flex",justifyContent: "center"}}>
-                
-                <DetailContent/>
+                {cardCss?
+                  <DetailContent/>
+                  :
+                  ""
+                }
+                {/* <DetailContent/> */}
                 <ListData 
                   searchResult={searchResult}
                   realObj={realObj}
