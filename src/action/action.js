@@ -362,8 +362,8 @@ export function letsTry (){
 export function getSpecificDate(id ,route ,company){
   console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
   console.log(id ,route ,company)
-  let url = "http://localhost:8081/getspecific";
-  // let url =`${process.env.REACT_APP_BASE_API_URL}/getspecific`
+  // let url = "http://localhost:8081/getspecific";
+  let url =`${process.env.REACT_APP_BASE_API_URL}/getspecific`
   return (dispatch)=>{
     return axios
     .get(url, {params:{id ,route ,company}})
