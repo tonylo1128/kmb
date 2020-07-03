@@ -24,7 +24,11 @@ function HeadOfListData({route,busCom,dst, state }) {
 
             {/* status, finish or not */}
             <div className="position-style">
-              {state=== "未完成" ? (
+
+            {state !=="✔" && state !=="✘"?
+
+
+              state=== "未完成" ? (
                 <h6 className="MarginTextCard" style={{ color: "red" }}>
                   {state}
                 </h6>
@@ -32,7 +36,26 @@ function HeadOfListData({route,busCom,dst, state }) {
                 <h6 className="MarginTextCard" style={{ color: "green" }}>
                   {state}
                 </h6>
-              )}
+              )
+                  :
+                  state=== "✘" ? (
+                    <h6 className="MarginTextCard" style={{ color: "red" }}>
+                      {state}
+                    </h6>
+                    ) : (
+                    <h6 className="MarginTextCard" style={{ color: "green" }}>
+                      {state}
+                    </h6>
+                  )
+
+            }
+
+
+
+
+
+
+
             </div>
         </div>
 

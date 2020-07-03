@@ -99,24 +99,46 @@ function DetailContent({}) {
             <div className="font2">
 
 
-              <b
-                style={{
-                  color: featherContent.完成挑戰 == "未完成" ? "red" : "green",
-                }}
-              >
-                {featherContent.完成挑戰}
-              </b>
+            {featherContent.完成挑戰 !=="✔" && featherContent.完成挑戰 !=="✘"?
+                  featherContent.完成挑戰 == "未完成" ? (
+                    <b style={{ color: "red" }}>{featherContent.完成挑戰}</b>
+                  ) : (
+                  <b style={{ color: "green" }}>{featherContent.完成挑戰}</b>
+                  )
+
+                  :
+
+                  featherContent.完成挑戰 == "✔" ? (
+                    <b style={{ color: "green" }}>{featherContent.完成挑戰}</b>
+                  ) : (
+                    <b style={{ color: "red" }}>{featherContent.完成挑戰}</b>
+                  )
+              }
 
 
             </div>
 
             <div className="font3">
 
-              {featherContent.完成挑戰 == "未完成" ? (
-                <b style={{ color: "red" }}>Not Yet Finish</b>
-              ) : (
-                <b style={{ color: "green" }}>Finished</b>
-              )}
+              {featherContent.完成挑戰 !=="✔" && featherContent.完成挑戰 !=="✘"?
+                  featherContent.完成挑戰 == "未完成" ? (
+                    <b style={{ color: "red" }}>Not Yet Finish</b>
+                  ) : (
+                    <b style={{ color: "green" }}>Finished</b>
+                  )
+
+                  :
+
+                  featherContent.完成挑戰 == "✔" ? (
+                    <b style={{ color: "green" }}>Not Yet Finish</b>
+                  ) : (
+                    <b style={{ color: "red" }}>Finished</b>
+                  )
+              }
+              
+              
+
+
 
             </div>
           </div>
@@ -234,9 +256,54 @@ function DetailContent({}) {
 
             }
 
+            </div>
+          </div>
+
+
+
+          {featherContent.可挑戰 != undefined?
+            <div className="raw">
+            <div className="left">
+              <div>可挑戰</div>
+              <div>available</div>
+            </div>
+            <div className="right">
+
+
+            {featherContent.可挑戰}
 
             </div>
           </div>
+
+            :
+            ""
+          }
+
+
+
+          {featherContent.聯營 != undefined?
+            <div className="raw">
+            <div className="left">
+              <div>聯營</div>
+              <div>J-O</div>
+            </div>
+            <div className="right">
+
+
+            {featherContent.聯營}
+
+            </div>
+          </div>
+
+            :
+            ""
+          }
+
+
+
+
+
+
         </div>
 
 

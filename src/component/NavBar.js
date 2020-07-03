@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Button,Navbar, Nav,Form } from "react-bootstrap";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import * as action from "../action/action";
 import * as XLSX from "xlsx";
 import { Link } from "react-router-dom";
@@ -23,6 +23,7 @@ function NavBar({
   //   callApiGetData(1, 30);
   // }, []);
 
+  const dispatch = useDispatch();
 
   return (
    
@@ -54,7 +55,6 @@ function NavBar({
               className="m-2"
               onClick={() => storeValueToState()}
               variant="outline-light"
-              type="submit"
             >
               Save
             </Button>
@@ -63,11 +63,17 @@ function NavBar({
               className="m-2"
               onClick={() => callApiForPostData(excel)}
               variant="outline-light"
-              type="submit"
             >
               Upload
             </Button>
 
+            <Button
+              className="m-2"
+              onClick={() => dispatch(action.callApiDeleAllRecord())}
+              variant="outline-light"
+            >
+              Delete
+            </Button>
 
             <input 
             // onChange={(event)=>handleSearchInput(event.target.value, realObj)}

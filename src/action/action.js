@@ -22,10 +22,13 @@ export function storeValueToState(data) {
 
 export function callApiForPostData(kmbData) {
   return (dispatch) => {
+    console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDLLM")
+    console.log(kmbData[0])
+    return axios.post("http://localhost:8081/postData", {kmbData})
     // return axios.post("https://still-taiga-23168.herokuapp.com/postData", {kmbData})
-    return axios.post(`${process.env.REACT_APP_BASE_API_URL}/postData`, {
-      kmbData,
-    });
+    // return axios.post(`${process.env.REACT_APP_BASE_API_URL}/postData`, {
+    //   kmbData,
+    // });
   };
 }
 
@@ -91,6 +94,7 @@ export function callApiGetData(page, per_page) {
   perPageValue = per_page;
   console.log("TRYINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   to get data form backend");
   let url =  `${process.env.REACT_APP_BASE_API_URL}/getdata?page` +  page + `&per_page=` +  per_page;
+  // let url =  `http://localhost:8081/getdata?page` +  page + `&per_page=` +  per_page;
   console.log(url);
   return (dispatch) => {
     // start loading screen
@@ -375,4 +379,18 @@ export function getSpecificDate(id ,route ,company){
       dispatch(cssAction.updateLoading())
     })
   }
+}
+
+
+export function callApiDeleAllRecord(){
+  return dispatch =>{
+    console.log("textingggggggggggggggg")
+    // let url = `${process.env.REACT_APP_BASE_API_URL}/deleleallrecord`
+    let url = "http://localhost:8081/deleleallrecord";
+    return axios.delete(url)
+    .then((resp)=>{
+      console.log(resp)
+    })
+  }
+  
 }
