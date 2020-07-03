@@ -70,7 +70,7 @@ function NavBar({
             <Button
               className="m-2"
               onClick={() => dispatch(action.callApiDeleAllRecord())}
-              variant="outline-light"
+              variant="danger"
             >
               Delete
             </Button>
