@@ -8,6 +8,8 @@ import UpdateLoading from "../Loading/UpdateLoading"
 
 import kmbLogo from "../../img/kmbLogo.png";
 
+import { CssTransition } from "react-transition-group";
+
 function DetailContent({}) {
   const dispatch = useDispatch();
 
@@ -16,11 +18,11 @@ function DetailContent({}) {
   const editting = useSelector((state)=>state.cssReducer.editting);
   const updateLoading = useSelector((state)=>state.cssReducer.updateLoading)
 
-  const [inputA, setInputA] = useState("");
-  const [inputB, setInputB] = useState("");
+  const [inputA, setInputA] = useState(cardCss?featherContent.開始時間 :"");
+  const [inputB, setInputB] = useState(cardCss?featherContent.結束時間 :"");
   const [inputC, setInputC] = useState("");
-  const [inputD, setInputD] = useState("");
-  const [inputE, setInputE] = useState("");
+  const [inputD, setInputD] = useState(cardCss?featherContent.Instagram記錄連結 :"");
+  const [inputE, setInputE] = useState(cardCss?featherContent.備註 :"");
 
 
   useEffect(()=>{
@@ -30,9 +32,12 @@ function DetailContent({}) {
     setInputB(featherContent.結束時間)
     setInputD(featherContent.Instagram記錄連結)
     setInputE(featherContent.備註)
-  },[])
-  
+  },[cardCss])
+
+
+
   return (
+
     <div className={cardCss ? "containerDetailContent active" : "containerDetailContent"}>
 
       
