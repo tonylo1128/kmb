@@ -6,6 +6,19 @@ import {convertCoord} from "../component/convertCoord"
 
 require("dotenv");
 
+
+
+let gobalUrl="https://still-taiga-23168.herokuapp.com"
+
+export function changeDatabaseUrl(input){
+  console.log("executedddddddddddddddd")
+  return dispatch=>{
+    gobalUrl = input;
+    dispatch(callApiGetData(1, 0))
+  }
+  
+}
+
 export function handleFileInput(inputTemp) {
   return {
     type: type.HANDLE_EXCELFILE_INPUT,
@@ -24,7 +37,7 @@ export function callApiForPostData(kmbData) {
   return (dispatch) => {
     console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDLLM")
     console.log(kmbData[0])
-    return axios.post("http://localhost:8081/postData", {kmbData})
+    return axios.post(gobalUrl, {kmbData})
     // return axios.post("https://still-taiga-23168.herokuapp.com/postData", {kmbData})
     // return axios.post(`${process.env.REACT_APP_BASE_API_URL}/postData`, {
     //   kmbData,
@@ -88,12 +101,13 @@ export function callbackForGetBusBound(response) {
 let pageValue = 0;
 let perPageValue = 0;
 
+
 export function callApiGetData(page, per_page) {
 
   pageValue = page;
   perPageValue = per_page;
   console.log("TRYINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   to get data form backend");
-  let url =  `${process.env.REACT_APP_BASE_API_URL}/getdata?page` +  page + `&per_page=` +  per_page;
+  let url =  gobalUrl+"/getdata?page" +  page + "&per_page=" +  per_page;
   // let url =  `http://localhost:8081/getdata?page` +  page + `&per_page=` +  per_page;
   console.log(url);
   return (dispatch) => {
@@ -101,7 +115,7 @@ export function callApiGetData(page, per_page) {
     dispatch(cssAction.loading()) 
     // return axios.get(`${process.env.REACT_APP_BASE_API_URL}`)
     return axios
-      .get( `${process.env.REACT_APP_BASE_API_URL}/getdata?page=` + page + `&per_page=` + per_page )
+      .get( gobalUrl+"/getdata?page=" + page + `&per_page=` + per_page )
       .then((response) => {
         pageValue++;
         console.log(response.data);
@@ -189,7 +203,7 @@ export function callApiGetTime(inputA) {
   return (dispatch) => {
     console.log(process.env.REACT_APP_BASE_API_URL);
     return axios
-      .post(`${process.env.REACT_APP_BASE_API_URL}/getbustime`, { inputA })
+      .post(gobalUrl+"/getbustime", { inputA })
       .then((response) => {
         console.log("dataForBusData arrrrrrrrrrrrrrrrrrrrrrrrr");
         console.log(response.data.dataForBusData);
@@ -247,7 +261,7 @@ export function handleSearchInput(inputSearchValue, busDataCheck) {
 export function serverSideSearchFun(inputSearchValue) {
   return (dispatch) => {
     axios
-      .post(`${process.env.REACT_APP_BASE_API_URL}/seaching`, {
+      .post(gobalUrl+"/seaching", {
         inputSearchValue,
       })
       .then((returnResponse) => {
@@ -367,7 +381,8 @@ export function getSpecificDate(id ,route ,company){
   console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
   console.log(id ,route ,company)
   // let url = "http://localhost:8081/getspecific";
-  let url =`${process.env.REACT_APP_BASE_API_URL}/getspecific`
+  // let url =`${process.env.REACT_APP_BASE_API_URL}/getspecific`
+  let url = gobalUrl+"/getspecific"
   return (dispatch)=>{
     return axios
     .get(url, {params:{id ,route ,company}})
@@ -386,7 +401,8 @@ export function callApiDeleAllRecord(){
   return dispatch =>{
     console.log("textingggggggggggggggg")
     // let url = `${process.env.REACT_APP_BASE_API_URL}/deleleallrecord`
-    let url = "http://localhost:8081/deleleallrecord";
+    // let url = "http://localhost:8081/deleleallrecord";
+    let url = gobalUrl+"/deleleallrecord"
     return axios.delete(url)
     .then((resp)=>{
       console.log(resp)
@@ -394,3 +410,6 @@ export function callApiDeleAllRecord(){
   }
   
 }
+
+
+

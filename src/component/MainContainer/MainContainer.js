@@ -10,6 +10,7 @@ import GoogleMapComponent from "../GoogleMap/GoogleMapComponent";
 import Instagram from "../Instagram";
 import DetailContent from "../DetailContent/DetailContent"
 import Loading from "../Loading/Loading"
+import DataSetting from "../DataSetting/DataSetting"
 
 function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, detailContent, searchResult, realObj, searchInput} ) {
 
@@ -96,6 +97,13 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
         <Route exact path="/instagram">
           <Instagram />
         </Route>
+
+
+        <Route exact path="/datasetting">
+            <DataSetting/>
+        </Route>
+
+
       </Switch>
       {/* <GetTime/> */}
     </div>
