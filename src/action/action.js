@@ -4,27 +4,40 @@ import * as XLSX from "xlsx";
 import axios from "axios";
 import {convertCoord} from "../component/convertCoord"
 
+
 require("dotenv");
 
 
+let localServerUrl = `${process.env.REACT_APP_BASE_API_URL_LOCAL}`;
+let uatServerUrl = `${process.env.REACT_APP_BASE_API_URL_UAT}`;
+let testingServerUrl = `${process.env.REACT_APP_BASE_API_URL_TESTING}`;
 
-let gobalUrl="https://still-taiga-23168.herokuapp.com"
+let server =[localServerUrl, uatServerUrl, testingServerUrl]
 
-export function changeDatabaseUrl(input){
-  console.log("executedddddddddddddddd")
-  return dispatch=>{
-    gobalUrl = input;
-    dispatch(callApiGetData(1, 0))
-  }
+
+let gobalUrl= server[2];
+
+export function handleDD({ meta, file }, status) {
   
+  return {
+    type: type.HANDLE_FILE_INPUT_DDVERSION,
+    payload: file,
+  };
 }
 
+
+
+
 export function handleFileInput(inputTemp) {
+ 
   return {
     type: type.HANDLE_EXCELFILE_INPUT,
     payload: inputTemp,
   };
 }
+
+
+
 
 export function storeValueToState(data) {
   return {
@@ -33,11 +46,28 @@ export function storeValueToState(data) {
   };
 }
 
-export function callApiForPostData(kmbData) {
+
+
+
+export function callApiForPostData(inputPromise) {
+
+
+  
   return (dispatch) => {
-    console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDLLM")
-    console.log(kmbData[0])
-    return axios.post(gobalUrl, {kmbData})
+    dispatch(cssAction.handleInItDataLoading())
+    console.log("DLLM AR DIU")
+    
+    inputPromise.then(resp=>{
+      // console.log(kmbData)
+      let kmbData = resp;
+      return axios
+      .post(gobalUrl+"/postData", {kmbData})
+      .then((RespRormServer)=>{
+        console.log(RespRormServer)
+        dispatch(cssAction.handleInItDataLoading())
+      })
+    })
+    
     // return axios.post("https://still-taiga-23168.herokuapp.com/postData", {kmbData})
     // return axios.post(`${process.env.REACT_APP_BASE_API_URL}/postData`, {
     //   kmbData,

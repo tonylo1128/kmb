@@ -39,7 +39,7 @@ function NavBar({
             <Nav.Link style={{ display: 'flex', alignItems: 'center' }}><Link to="/gettime" style={{ color: '#ffffff',  }}>Get Time</Link></Nav.Link>
             <Nav.Link style={{ display: 'flex', alignItems: 'center' }}><Link to="/googlemapapi" style={{ color: '#ffffff',  }}>GoogleMapAPI</Link></Nav.Link>
             <Nav.Link style={{ display: 'flex', alignItems: 'center' }}><Link to="/Instagram" style={{ color: '#ffffff',  }}>Instagram</Link></Nav.Link>
-            <Nav.Link style={{ display: 'flex', alignItems: 'center' }}><Link to="/datasetting" style={{ color: '#ffffff',  }}>Data Setting</Link></Nav.Link>
+            <Nav.Link style={{ display: 'flex', alignItems: 'center' }}><Link to="/datasetting" style={{ color: '#ffffff',  }}>Data Init</Link></Nav.Link>
           </Nav>
           
           <Form inline>
@@ -53,7 +53,7 @@ function NavBar({
             />
             <Button
               className="m-2"
-              onClick={() => storeValueToState()}
+              // onClick={() => storeValueToState()}
               variant="outline-light"
             >
               Save

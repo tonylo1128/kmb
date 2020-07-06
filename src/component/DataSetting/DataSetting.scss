@@ -1,44 +1,4 @@
-.data-setting{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .urlContainer{
-        display:flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 90%;
-        height: 100%;
-        background: red;
-
-        .url{
-            width: 150px;
-            height: 150px;
-            border-radius: 25px;
-            // word-wrap: ;
-            
-            border: 0.5px solid black;
-            background: white;
-            cursor: pointer;
-            transition: .2s;
-            
-            
-
-            &:hover{
-                transition: .2s;
-                transform: scale(1.3);
-            }
-
-            div{
-                width: 100%;
-                height: 100%;
-                overflow-wrap: anywhere;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        }
-    }
+.dzu-dropzone {
+  height: 300px;
+  width: 80% !important;
 }

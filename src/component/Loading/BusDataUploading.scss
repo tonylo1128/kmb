@@ -1,0 +1,66 @@
+.bus-data-uploading-container{
+    position: absolute;
+    width: 100%;
+    height: 90vh;
+    z-index: 10002;
+    
+
+
+    .transparent-bg-black{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        background: black;
+    }
+    
+    .content-contianer{
+        position: absolute;
+        top:0%;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        img{
+            
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+        }
+        .wordContainer {
+            display: flex;
+            color: white;
+      
+            .loadingAnimation {
+              margin-left: 5px;
+              display: flex;
+      
+              div {
+                margin-left: 2px;
+                animation: ani 0.3s infinite alternate;
+      
+                @for $i from 1 through 3 {
+                  &:nth-child(#{$i}) {
+                    animation-delay: #{$i * 0.1s};
+                  }
+                }
+              }
+            }
+      
+            @keyframes ani {
+              0% {
+                transform: scale(1);
+              }
+              100% {
+                transform: scale(1.3);
+              }
+            }
+          }
+    }
+    
+
+    
+}

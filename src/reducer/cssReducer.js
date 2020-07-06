@@ -6,8 +6,8 @@ const initstate = {
     cardCss: false,
     loading: false,
     editting: false,
-    updateLoading: false
-    
+    updateLoading: false,
+    initDataUpload: false
 };
 
 export default function ( state=initstate, {type, payload}){
@@ -49,6 +49,12 @@ export default function ( state=initstate, {type, payload}){
             return{
                 ...state,
                 updateLoading: !state.updateLoading
+            }
+        case cssType.HANDLE_INIT_DATA_UPDATE:
+            console.log("DLLM AR PK JAI");
+            return{
+                ...state,
+                initDataUpload: !state.initDataUpload
             }
         
         default:
