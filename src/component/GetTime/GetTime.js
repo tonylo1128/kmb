@@ -1,9 +1,10 @@
 import React from "react";
 import { Container, Row, Col, Form, Button, Card, Table } from "react-bootstrap";
 import { connect } from "react-redux";
-import * as action from "../action/action";
+import * as action from "../../action/action";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import RouteDetails from "./RouteDetails"
+import RouteDetails from "../RouteDetails"
+import "./getTime.scss"
 
 function GetTime({handleBusRouteInput,handleBusRouteInputValue,getBusBound,temp,
   callApiForRouteData,tempForRoute,tempForTime,callApiGetTime,selectedItem, clearBusRouteDetails
@@ -12,7 +13,7 @@ function GetTime({handleBusRouteInput,handleBusRouteInputValue,getBusBound,temp,
   let tempList = [];
 
   return (
-    <Container>
+    <div className="get-time-container">
       <Row>
         <Col xs={4}>
           <Card>
@@ -80,32 +81,7 @@ function GetTime({handleBusRouteInput,handleBusRouteInputValue,getBusBound,temp,
                 </tbody>
               </Table>
 
-{/* 
-              {temp != null ? (
-                temp.map((item, index) => {
-                  return (
-                    <Col>
-                      <Card style={{ width: "15rem" }} key={index}>
-                        <Card.Title> ROUTE: {item.ROUTE} </Card.Title>
-                        <Card.Text>Service Type: {item.SERVICE_TYPE}</Card.Text>
-                        <Button
-                          onClick={() =>
-                            callApiForRouteData(
-                              item.ROUTE,
-                              item.SERVICE_TYPE,
-                              item.BOUND
-                            )
-                          }
-                        >
-                          Bound: {item.BOUND}
-                        </Button>
-                      </Card>
-                    </Col>
-                  );
-                })
-              ) : (
-                <h1>Nothing here</h1>
-              )} */}
+
             </Row>
             <Row>
               {console.log("This is the VERY BEGINNER of RouteDetails")}
@@ -118,7 +94,7 @@ function GetTime({handleBusRouteInput,handleBusRouteInputValue,getBusBound,temp,
           </Router>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }
 

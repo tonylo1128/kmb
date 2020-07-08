@@ -6,11 +6,13 @@ import "./DataSetting.scss";
 import "react-dropzone-uploader/dist/styles.css";
 import Dropzone from "react-dropzone-uploader";
 import BusDataUploading from "../Loading/BusDataUploading";
+import downloadLink from "../../file/HK Bus Routes List & Journey Record.xlsx"
 
 function DataSetting() {
   const dispatch = useDispatch();
   let excel = useSelector((state) => state.reducer.excel);
   let initDataUpload = useSelector((state) => state.cssReducer.initDataUpload);
+
 
   return (
     <div className="main-container-ds">
@@ -19,6 +21,14 @@ function DataSetting() {
       }
         <div className="sub-container-ds">
           <h4>Upload your init data here:</h4>
+
+          <button
+              className="delete-button"
+              onClick={() => dispatch(action.callApiDeleAllRecord())}
+          >
+              Delete ALL
+          </button>
+        </div>
 
           <div className="data-setting">
             <div className="urlContainer">
@@ -34,7 +44,12 @@ function DataSetting() {
               />
             </div>
           </div>
-        </div>
+
+
+          <div>
+            Init data can be download<a href={downloadLink} download> here</a>, before you upload it, make sure u delete all the record first to avoid data duplication 
+          </div>
+        
       
     </div>
   );

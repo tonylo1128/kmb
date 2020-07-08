@@ -1,6 +1,27 @@
 .App {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: black;
+  color: white;
+  transition: .5s;
+
+
+  &.light-mode{
+    transition: .5s;
+    background: white;
+    color: black;
+  }
+  
+  &.dark-mode{
+    transition: .5s;
+    background: black;
+    color: white;
+  }
 }
+
+
+
+
+
 
 .uploadExcel{
   display: flex;
@@ -37,9 +58,11 @@
 }
 
 .main-container {
-  padding: 75px 0 0 0;
+  padding: 25px 0 0 0;
   overflow: 'scroll';
   width: 100%;
+  display: flex;
+  justify-content: center;
   // margin:0 35px;
 }
 
@@ -182,21 +205,6 @@
 
 
 
-input[type=text] {
-  width: 130px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: white;
-  padding: 12px 20px 12px 40px;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
-}
-
-input[type=text]:focus {
-  width: 25%;
-}
 
 /* .bus-container{
   width: 50px;

@@ -7,7 +7,8 @@ const initstate = {
     loading: false,
     editting: false,
     updateLoading: false,
-    initDataUpload: false
+    initDataUpload: false,
+    lightMode: false,
 };
 
 export default function ( state=initstate, {type, payload}){
@@ -56,7 +57,14 @@ export default function ( state=initstate, {type, payload}){
                 ...state,
                 initDataUpload: !state.initDataUpload
             }
-        
+
+        case cssType.HANDLE_LIGHT_MODE_SWITCH:
+            console.log("FUCK U !!!!!!!!!!!!!!!!!!!!!!")
+            return{
+                ...state,
+                lightMode: !state.lightMode
+            }
+            
         default:
             return state;
     }

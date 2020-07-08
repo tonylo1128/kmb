@@ -1,43 +1,32 @@
 import * as type from "./type";
-import * as cssAction from "./css/cssAction"
+import * as cssAction from "./css/cssAction";
 import * as XLSX from "xlsx";
 import axios from "axios";
-import {convertCoord} from "../component/convertCoord"
-
+import { convertCoord } from "../component/convertCoord";
 
 require("dotenv");
-
 
 let localServerUrl = `${process.env.REACT_APP_BASE_API_URL_LOCAL}`;
 let uatServerUrl = `${process.env.REACT_APP_BASE_API_URL_UAT}`;
 let testingServerUrl = `${process.env.REACT_APP_BASE_API_URL_TESTING}`;
 
-let server =[localServerUrl, uatServerUrl, testingServerUrl]
+let server = [localServerUrl, uatServerUrl, testingServerUrl];
 
-
-let gobalUrl= server[2];
+let gobalUrl = server[2];
 
 export function handleDD({ meta, file }, status) {
-  
   return {
     type: type.HANDLE_FILE_INPUT_DDVERSION,
     payload: file,
   };
 }
 
-
-
-
 export function handleFileInput(inputTemp) {
- 
   return {
     type: type.HANDLE_EXCELFILE_INPUT,
     payload: inputTemp,
   };
 }
-
-
-
 
 export function storeValueToState(data) {
   return {
@@ -46,28 +35,22 @@ export function storeValueToState(data) {
   };
 }
 
-
-
-
 export function callApiForPostData(inputPromise) {
-
-
-  
   return (dispatch) => {
-    dispatch(cssAction.handleInItDataLoading())
-    console.log("DLLM AR DIU")
-    
-    inputPromise.then(resp=>{
+    dispatch(cssAction.handleInItDataLoading());
+    console.log("DLLM AR DIU");
+
+    inputPromise.then((resp) => {
       // console.log(kmbData)
       let kmbData = resp;
       return axios
-      .post(gobalUrl+"/postData", {kmbData})
-      .then((RespRormServer)=>{
-        console.log(RespRormServer)
-        dispatch(cssAction.handleInItDataLoading())
-      })
-    })
-    
+        .post(gobalUrl + "/postData", { kmbData })
+        .then((RespRormServer) => {
+          console.log(RespRormServer);
+          dispatch(cssAction.handleInItDataLoading());
+        });
+    });
+
     // return axios.post("https://still-taiga-23168.herokuapp.com/postData", {kmbData})
     // return axios.post(`${process.env.REACT_APP_BASE_API_URL}/postData`, {
     //   kmbData,
@@ -131,32 +114,31 @@ export function callbackForGetBusBound(response) {
 let pageValue = 0;
 let perPageValue = 0;
 
-
-export function callApiGetData(page, per_page) {
-
+export function callApiGetData(page, per_page, loading) {
   pageValue = page;
   perPageValue = per_page;
-  console.log("TRYINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   to get data form backend");
-  let url =  gobalUrl+"/getdata?page" +  page + "&per_page=" +  per_page;
+  console.log(
+    "TRYINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   to get data form backend"
+  );
+  let url = gobalUrl + "/getdata?page" + page + "&per_page=" + per_page;
   // let url =  `http://localhost:8081/getdata?page` +  page + `&per_page=` +  per_page;
   console.log(url);
   return (dispatch) => {
-    // start loading screen
-    dispatch(cssAction.loading()) 
-    // return axios.get(`${process.env.REACT_APP_BASE_API_URL}`)
-    return axios
-      .get( gobalUrl+"/getdata?page=" + page + `&per_page=` + per_page )
-      .then((response) => {
-        pageValue++;
-        console.log(response.data);
-        dispatch(getDataApiFun(response.data.recieveRespFromkmbDataRepos));
-        // end loading screen
-        dispatch(cssAction.loading()) 
-      });
+    if (loading==false) {
+      // start loading screen
+      dispatch(cssAction.loading());
+      // return axios.get(`${process.env.REACT_APP_BASE_API_URL}`)
+      return axios
+        .get(gobalUrl + "/getdata?page=" + page + `&per_page=` + per_page)
+        .then((response) => {
+          pageValue++;
+          console.log(response.data);
+          dispatch(getDataApiFun(response.data.recieveRespFromkmbDataRepos));
+          // end loading screen
+          dispatch(cssAction.loading());
+        });
+    }
   };
-  
-
-  
 }
 
 export function getDataApiFun(returnDataFromNodejs) {
@@ -166,26 +148,24 @@ export function getDataApiFun(returnDataFromNodejs) {
   };
 }
 
-
-
-
-
-
-
-export function handleScroll() {
+export function handleScroll(loadingFromCssReducer) {
+  console.log("God damn it mother fucker!!!!!!!!!!!!!!!!!!!!!!");
+  // console.log (doOnce)
   return (dispatch) => {
-    if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
-      // you're at the bottom of the page
-      console.log("Bottom of page and the current url is: ");
-      let url = window.location.href;
-      console.log(url);
-      if (
-        url == "http://localhost:3000/" ||
-        url == "http://damp-beyond-67207.herokuapp.com/"
-      ) {
-        dispatch(callApiGetData(pageValue, perPageValue));
-      }
-    }
+    dispatch(callApiGetData(pageValue, perPageValue, loadingFromCssReducer));
+  };
+}
+
+export function testingggg() {
+  return (dispatch) => {
+    console.log("I am.....");
+    dispatch(testingggg2());
+  };
+}
+
+export function testingggg2() {
+  return (dispatch) => {
+    console.log("iron man");
   };
 }
 
@@ -232,17 +212,15 @@ export function callApiGetTime(inputA) {
   console.log("-------AAAAAAAA----------BBBBBBBBB------------");
   return (dispatch) => {
     console.log(process.env.REACT_APP_BASE_API_URL);
-    return axios
-      .post(gobalUrl+"/getbustime", { inputA })
-      .then((response) => {
-        console.log("dataForBusData arrrrrrrrrrrrrrrrrrrrrrrrr");
-        console.log(response.data.dataForBusData);
-        const temp = response.data.dataForBusData;
-        // temp.map((item, index)=>{
-        //   console.log(item.response)
-        // })
-        dispatch(callbackApiForGetTime(temp));
-      });
+    return axios.post(gobalUrl + "/getbustime", { inputA }).then((response) => {
+      console.log("dataForBusData arrrrrrrrrrrrrrrrrrrrrrrrr");
+      console.log(response.data.dataForBusData);
+      const temp = response.data.dataForBusData;
+      // temp.map((item, index)=>{
+      //   console.log(item.response)
+      // })
+      dispatch(callbackApiForGetTime(temp));
+    });
   };
 }
 
@@ -291,11 +269,13 @@ export function handleSearchInput(inputSearchValue, busDataCheck) {
 export function serverSideSearchFun(inputSearchValue) {
   return (dispatch) => {
     axios
-      .post(gobalUrl+"/seaching", {
+      .post(gobalUrl + "/seaching", {
         inputSearchValue,
       })
       .then((returnResponse) => {
-        console.log("we are here in action.js, HERE IS THE RETURN RESPONSE for searching function");
+        console.log(
+          "we are here in action.js, HERE IS THE RETURN RESPONSE for searching function"
+        );
         console.log(returnResponse.data.returnResp);
         dispatch(
           sssDispatchFun(returnResponse.data.returnResp, inputSearchValue)
@@ -311,26 +291,23 @@ export function sssDispatchFun(returnResp, inputValue) {
   };
 }
 
-
-
-function findCenterConvert (lineGeometry){
-  return dispatch=>{
-
-      let temp = lineGeometry;
-      let jsonLineGeometry =temp.replace("paths", "\"paths\"")
-      jsonLineGeometry = JSON.parse(jsonLineGeometry)
-      let center = jsonLineGeometry.paths[   parseInt((jsonLineGeometry.paths.length)/2 )  ]
-      // console.log(center[center.length/2])
-      center = center[parseInt(center.length/2)];
-      center =  convertCoord({ lat: center[0], lng: center[1] })
-      console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-      console.log(center)
-      return center
-    }
-     
+function findCenterConvert(lineGeometry) {
+  return (dispatch) => {
+    let temp = lineGeometry;
+    let jsonLineGeometry = temp.replace("paths", '"paths"');
+    jsonLineGeometry = JSON.parse(jsonLineGeometry);
+    let center =
+      jsonLineGeometry.paths[parseInt(jsonLineGeometry.paths.length / 2)];
+    // console.log(center[center.length/2])
+    center = center[parseInt(center.length / 2)];
+    center = convertCoord({ lat: center[0], lng: center[1] });
+    console.log(
+      "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    );
+    console.log(center);
+    return center;
+  };
 }
-
-
 
 export function getPath(inputHandle, setPath, setZoom, setCenter) {
   return (dispatch) => {
@@ -343,17 +320,22 @@ export function getPath(inputHandle, setPath, setZoom, setCenter) {
     axios.get(url).then(({ data }) => {
       let lineGeometry = data.data.route.lineGeometry;
 
-      console.log( dispatch(findCenterConvert(lineGeometry)))
+      console.log(dispatch(findCenterConvert(lineGeometry)));
 
       setPath(eval(lineGeometry));
       setZoom(13);
-      setCenter(  findCenterConvert(lineGeometry)  );
+      setCenter(findCenterConvert(lineGeometry));
     });
   };
 }
 
-
-export function enterKeyHandle( eventValue, inputValue, setPath, setZoom, setCenter ) {
+export function enterKeyHandle(
+  eventValue,
+  inputValue,
+  setPath,
+  setZoom,
+  setCenter
+) {
   // alert("Hello! I am an alert box!!");
   return (dispatch) => {
     console.log(eventValue.keyCode);
@@ -364,27 +346,24 @@ export function enterKeyHandle( eventValue, inputValue, setPath, setZoom, setCen
   };
 }
 
+export function featherContent(passInContent) {
+  return (dispatch) => {
+    console.log(passInContent);
 
-
-export function featherContent (passInContent){
-  return dispatch=>{
-    console.log(passInContent)
-    
-    console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDAAAAAAAAAAAAAAAAAAAAAMMMMMMMMMMMMMMMMMMMNNNNNNNNNNNNNNNN")
-    dispatch(featherContentCallBack(passInContent))
-    dispatch(cssAction.cssActiveHandle())
-  }
+    console.log(
+      "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDAAAAAAAAAAAAAAAAAAAAAMMMMMMMMMMMMMMMMMMMNNNNNNNNNNNNNNNN"
+    );
+    dispatch(featherContentCallBack(passInContent));
+    dispatch(cssAction.cssActiveHandle());
+  };
 }
 
 export function featherContentCallBack(passInContent) {
   return {
     type: type.SHOW_DETAIL_CONTENT,
-    payload:passInContent,
+    payload: passInContent,
   };
 }
-
-
-
 
 // export const enterKeyHandle = (eventValue, inputValue, setPath, setZoom, setCenter, dispatch)=> dispatch =>{
 //   console.log(eventValue.keyCode )
@@ -396,50 +375,45 @@ export function featherContentCallBack(passInContent) {
 //   }
 // }
 
-
-export function letsTry (){
-  return dispatch=>{
-    console.log("IT WORKSS SUKCER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-  }
-  
+export function letsTry() {
+  return (dispatch) => {
+    console.log(
+      "IT WORKSS SUKCER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    );
+  };
 }
-
 
 //HERE
 
-export function getSpecificDate(id ,route ,company){
-  console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-  console.log(id ,route ,company)
+export function getSpecificDate(id, route, company) {
+  console.log(
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+  );
+  console.log(id, route, company);
   // let url = "http://localhost:8081/getspecific";
   // let url =`${process.env.REACT_APP_BASE_API_URL}/getspecific`
-  let url = gobalUrl+"/getspecific"
-  return (dispatch)=>{
-    return axios
-    .get(url, {params:{id ,route ,company}})
-    .then(resp=>{
-      console.log("the get function workssssssssssssssssssssssssssssssssssssssssssssssss")
-      console.log(resp)
-      dispatch(featherContentCallBack(resp.data.resp[0]))
-      dispatch(cssAction.callBackForEditting())
-      dispatch(cssAction.updateLoading())
-    })
-  }
+  let url = gobalUrl + "/getspecific";
+  return (dispatch) => {
+    return axios.get(url, { params: { id, route, company } }).then((resp) => {
+      console.log(
+        "the get function workssssssssssssssssssssssssssssssssssssssssssssssss"
+      );
+      console.log(resp);
+      dispatch(featherContentCallBack(resp.data.resp[0]));
+      dispatch(cssAction.callBackForEditting());
+      dispatch(cssAction.updateLoading());
+    });
+  };
 }
 
-
-export function callApiDeleAllRecord(){
-  return dispatch =>{
-    console.log("textingggggggggggggggg")
+export function callApiDeleAllRecord() {
+  return (dispatch) => {
+    console.log("textingggggggggggggggg");
     // let url = `${process.env.REACT_APP_BASE_API_URL}/deleleallrecord`
     // let url = "http://localhost:8081/deleleallrecord";
-    let url = gobalUrl+"/deleleallrecord"
-    return axios.delete(url)
-    .then((resp)=>{
-      console.log(resp)
-    })
-  }
-  
+    let url = gobalUrl + "/deleleallrecord";
+    return axios.delete(url).then((resp) => {
+      console.log(resp);
+    });
+  };
 }
-
-
-

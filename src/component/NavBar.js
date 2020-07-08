@@ -44,28 +44,8 @@ function NavBar({
           
           <Form inline>
             {/* <label for="files" className=""> Upload Your Excel Here !</label> */}
-            <input
-                id="files"
-                className="text-light "
-                type="file"
-                accept=".xlsx, .xls"
-                onChange={event => handleFileInput(event.target.files[0])}
-            />
-            <Button
-              className="m-2"
-              // onClick={() => storeValueToState()}
-              variant="outline-light"
-            >
-              Save
-            </Button>
-
-            <Button
-              className="m-2"
-              onClick={() => callApiForPostData(excel)}
-              variant="outline-light"
-            >
-              Upload
-            </Button>
+            
+            
 
             <Button
               className="m-2"

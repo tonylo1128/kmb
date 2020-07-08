@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./mainContainer.scss";
 // import "../App.scss"
 import * as action from "../../action/action";
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import ListData from "../ListData/ListData";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import GetTime from "../GetTime";
+import GetTime from "../GetTime/GetTime";
 import GoogleMapComponent from "../GoogleMap/GoogleMapComponent";
 import Instagram from "../Instagram";
 import DetailContent from "../DetailContent/DetailContent"
@@ -14,10 +14,8 @@ import DataSetting from "../DataSetting/DataSetting"
 
 function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, detailContent, searchResult, realObj, searchInput} ) {
 
-  window.addEventListener("scroll", (event) => {
-    handleScroll();
-  });
-
+  const dispatch = useDispatch();
+  
   function useToggleForInput() {
     const [input, setInput] = useState();
     const toggleInput = (e) => setInput(e.target.value);
@@ -31,6 +29,31 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
   const loading = useSelector((state)=>state.cssReducer.loading)
   const cardCss = useSelector(state=>state.cssReducer.cardCss)
 
+
+
+  useEffect(()=>{
+
+    window.addEventListener("scroll", (event) => {
+
+      if (window.innerHeight + window.scrollY == document.body.scrollHeight) {
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        let url = window.location.href;
+
+        if ( url == "http://localhost:3000/" ||  url == "http://damp-beyond-67207.herokuapp.com/" ) {
+          // console.log("ABOUT TO DISPATCHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+          dispatch(action.handleScroll(loading)) 
+          // testingggg();
+          // console.log("CEHCKKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
+        }
+      }
+
+    });
+
+  },[])
+
+  
+
+  
   return (
     <div className="main-container">
       <Switch>

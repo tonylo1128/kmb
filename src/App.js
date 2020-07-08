@@ -1,40 +1,39 @@
 import React, { useEffect } from "react";
 import "./App.scss";
-import { connect } from "react-redux";
+import { connect, useSelector} from "react-redux";
 import * as action from "./action/action";
-import NavBar from "./component/NavBar";
-import ListData from "./component/ListData/ListData";
+// import NavBar from "./component/NavBar";
+import NavBar2 from "./component/NavBar2/NavBar2"
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import GetTime from "./component/GetTime";
-import GoogleMapComponent from "./component/GoogleMap/GoogleMapComponent"
 import MainContainer from "./component/MainContainer/MainContainer"
 
 
 function App({ callApiGetData }) {
+
+  
+
+
+  const lightMode = useSelector(state=>state.cssReducer.lightMode)
+  const loading = useSelector(state=>state.cssReducer.loading)
+
   useEffect(() => {
-    callApiGetData(1, 30);
+    callApiGetData(1, 30, loading)
   }, []);
 
-
-
-
-  let buttonStyle = {
-    position: "absolute", 
-    right: "5px", 
-    top: "5px"
-  }
 
   return (
     <Router>
 
-    <div className="App">
-      <NavBar />
+    <div className={lightMode ? "App  light-mode" : "App dark-mode"}>
+
+      <NavBar2 />
 
       <div className="firstContainer">
         <MainContainer/>
       </div>
 
     </div>
+
   </Router>
   );
 }
@@ -48,7 +47,7 @@ const mapStateToProps = state => ({
 });
 
 const mapsStateToAction = dispatch => ({
-  callApiGetData: (input, input2) => dispatch(action.callApiGetData(input, input2)),
+  callApiGetData: (input, input2, input3) => dispatch(action.callApiGetData(input, input2, input3)),
   getLocation: ()=>dispatch(action.getLocation()),
 });
 

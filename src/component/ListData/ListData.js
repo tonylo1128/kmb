@@ -14,7 +14,7 @@ function ListData({ excel, realObj, searchResult, searchInput, featherContent}) 
 
   const cardCss = useSelector(state=>state.cssReducer.cardCss)
   const dispatch = useDispatch();
-
+  const lightMode = useSelector(state=>state.cssReducer.lightMode)
 
 
   return (
@@ -36,7 +36,7 @@ function ListData({ excel, realObj, searchResult, searchInput, featherContent}) 
                   state={item.完成挑戰}
                 />
 
-                <hr />
+                <hr className={ lightMode?"light-mode" : "dark-mode" }/>
 
                 <div className="cardContainerBottom">
                   <h6 className="MarginTextCard">
