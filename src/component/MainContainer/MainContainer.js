@@ -12,6 +12,9 @@ import DetailContent from "../DetailContent/DetailContent"
 import Loading from "../Loading/Loading"
 import DataSetting from "../DataSetting/DataSetting"
 
+
+import _debounce from 'lodash.debounce'
+
 function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, detailContent, searchResult, realObj, searchInput} ) {
 
   const dispatch = useDispatch();
@@ -30,26 +33,39 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
   const cardCss = useSelector(state=>state.cssReducer.cardCss)
 
 
-
   useEffect(()=>{
 
-    window.addEventListener("scroll", (event) => {
+    window.addEventListener("scroll", _debounce((event) => {
 
-      if (window.innerHeight + window.scrollY == document.body.scrollHeight) {
-        console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+      // if (window.innerHeight + window.scrollY == document.body.scrollHeight) {
+      //   console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+      //   let url = window.location.href;
+
+      //   if ( url == "http://localhost:3000/" ||  url == "http://damp-beyond-67207.herokuapp.com/" ) {
+      //     // console.log("ABOUT TO DISPATCHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+      //     dispatch(action.handleScroll(loading)) 
+      //     // testingggg();
+      //     // console.log("CEHCKKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
+      //   }
+      // }
+      console.log(1)
+      if (document.body.scrollHeight - (window.innerHeight + window.scrollY) <= 100 ) {
+        console.log('Should fetch new data: ', loading)
         let url = window.location.href;
-
-        if ( url == "http://localhost:3000/" ||  url == "http://damp-beyond-67207.herokuapp.com/" ) {
-          // console.log("ABOUT TO DISPATCHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
-          dispatch(action.handleScroll(loading)) 
-          // testingggg();
-          // console.log("CEHCKKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
+        if ( url === "http://localhost:3000/" ||  url === "http://damp-beyond-67207.herokuapp.com/" ) {
+          if (!loading) {
+            dispatch(action.handleScroll(loading)) 
+          }
         }
       }
 
-    });
+    }, 100));
 
-  },[])
+    return () => {
+      window.removeEventListener('scroll', () => {})
+    }
+
+  }, [])
 
   
 
@@ -60,19 +76,10 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
         <Route exact path="/">
           <div className="cardstyle">
 
-
-
-
-
-
           {/* used to onClick then display feather content */}
 
-            
-
-            {loading?
-              <Loading/>
-            :
-              <div style={{width:"100%",display:"flex",justifyContent: "center"}}>
+            {loading && <Loading/>}
+            <div style={{width:"100%",display:"flex",justifyContent: "center"}}>
                 {/* {cardCss?
                   
                   :
@@ -86,7 +93,6 @@ function MainContainer( { temp, handleScroll, getPath, texting, enterKeyHandle, 
                   searchInput={searchInput}
                 />
               </div>
-            }
 
             
           </div>

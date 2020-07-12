@@ -8,6 +8,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "google-maps-react": "^2.0.2",
+    "lodash.debounce": "^4.0.8",
     "node-sass": "^4.14.1",
     "proj4": "^2.6.0",
     "react": "^16.11.0",

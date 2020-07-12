@@ -117,27 +117,27 @@ let perPageValue = 0;
 export function callApiGetData(page, per_page, loading) {
   pageValue = page;
   perPageValue = per_page;
+  
   console.log(
     "TRYINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   to get data form backend"
   );
   let url = gobalUrl + "/getdata?page" + page + "&per_page=" + per_page;
   // let url =  `http://localhost:8081/getdata?page` +  page + `&per_page=` +  per_page;
   console.log(url);
-  return (dispatch) => {
-    if (loading==false) {
-      // start loading screen
-      dispatch(cssAction.loading());
-      // return axios.get(`${process.env.REACT_APP_BASE_API_URL}`)
-      return axios
-        .get(gobalUrl + "/getdata?page=" + page + `&per_page=` + per_page)
-        .then((response) => {
-          pageValue++;
-          console.log(response.data);
-          dispatch(getDataApiFun(response.data.recieveRespFromkmbDataRepos));
-          // end loading screen
-          dispatch(cssAction.loading());
-        });
-    }
+  return async (dispatch) => {
+     // start loading screen
+     dispatch(cssAction.loading());
+     // return axios.get(`${process.env.REACT_APP_BASE_API_URL}`)
+     try {
+        const response = await axios.get(`${gobalUrl}/getdata`, { params: { page, per_page }})
+        dispatch(getDataApiFun(response.data.recieveRespFromkmbDataRepos))
+        return response
+     } catch(e) {
+        console.error(e)
+     } finally {
+        pageValue++;
+        dispatch(cssAction.loading());
+     }
   };
 }
 
