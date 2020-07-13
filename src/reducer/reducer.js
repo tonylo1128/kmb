@@ -103,6 +103,7 @@ export default function (state = initstate, { type, payload }) {
             }
 
             console.log( "Data = data = data.concat(XLSX.utils.sheet_to_json(workbook.Sheets[sheet]));" );
+            console.log(dataFormExcel)
             resolve(dataFormExcel);
           };
 

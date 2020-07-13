@@ -38,7 +38,7 @@ function DetailContent({}) {
 
   return (
 
-    <div className={cardCss ? "containerDetailContent active" : "containerDetailContent"}>
+    <div className={cardCss ? "containerDetailContent active" : "containerDetailContent"}  style={ {color: "black"  }} >
 
       
 
@@ -278,7 +278,6 @@ function DetailContent({}) {
             :
             ""
           }
-
 
 
           {featherContent.聯營 != undefined?

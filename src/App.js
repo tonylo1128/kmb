@@ -28,9 +28,9 @@ function App({ callApiGetData }) {
 
       <NavBar2 />
 
-      <div className="firstContainer">
-        <MainContainer/>
-      </div>
+      
+      <MainContainer/>
+      
 
     </div>
 

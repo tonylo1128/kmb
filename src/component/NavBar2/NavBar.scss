@@ -1,7 +1,6 @@
 .nav-bar-container {
   display: flex;
   z-index: 2;
-  background: #4184db;
   height: 65px;
   position: sticky;
   top: 0;
@@ -60,6 +59,7 @@
 
 
       .switch-container{
+        margin-right: 15px;
         width: 60px;
         height: 30px;
 
@@ -117,8 +117,10 @@
       height: 35px;
       border: white 1px solid;
       cursor: pointer;
+      margin-right: 10px;
 
       .line-top {
+        margin: 0 auto;
         position: relative;
         width: 25px;
         height: 1px;
@@ -126,6 +128,7 @@
         top: 30%;
       }
       .middle-top {
+        margin: 0 auto;
         position: relative;
         width: 25px;
         height: 1px;
@@ -133,6 +136,7 @@
         top: 45%;
       }
       .bottom-top {
+        margin: 0 auto;
         position: relative;
         width: 25px;
         height: 1px;

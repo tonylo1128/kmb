@@ -10,14 +10,17 @@ function NavBar2({ serverSideSearchFun }) {
 
   const dispatch = useDispatch();
   const [moblieMenuActive, setMoblieMenuActive] = useState(false)
-  //const lightMode = useSelector(state=>state.cssReducer.lightMode)
+  const lightMode = useSelector(state=>state.cssReducer.lightMode)
 
   return (
    
-    <div className={moblieMenuActive ? "nav-bar-container active" :"nav-bar-container"}>
+    <div className={
+        moblieMenuActive ? "nav-bar-container active" :"nav-bar-container"}
+        style={ {background: lightMode? "#4184db":"#f42828"  }  }
+        >
         
         <div className="logo"><Link to="/" style={{ color: '#ffffff',  }}>KMBPJ</Link></div>
-        <div className="menu-button-768" onClick={()=>setMoblieMenuActive(!moblieMenuActive)}>
+        <div className="menu-button-768"  style={ {background: lightMode? "#4184db":"#f42828"  } } onClick={()=>setMoblieMenuActive(!moblieMenuActive)} >
             <div className="line-top"></div>
             <div className="middle-top"></div>
             <div className="bottom-top"></div>

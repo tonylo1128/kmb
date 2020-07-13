@@ -26,10 +26,8 @@ const Map = compose(
 
   return (
     
-    <div >
-      
-      {console.log("God DAMN IT LET ME CHECK CHECk"),
-      console.log(center)}
+    <div className="google-map-container">
+
       <GoogleMap 
         defaultZoom={12}
         center={center}
